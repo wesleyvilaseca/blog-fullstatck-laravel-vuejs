@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('tags/all', [TagController::class, 'all']);
+Route::post('tags/create', [TagController::class, 'create']);
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -20,7 +24,3 @@ Route::get('/', function () {
 Route::any('{slug}', function () {
     return view('welcome');
 });
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

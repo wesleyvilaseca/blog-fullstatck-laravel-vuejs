@@ -1,5 +1,4 @@
 <template>
-  <div class="content">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 col-md-3">
@@ -248,7 +247,6 @@
       </div>
       <Page :total="100" />
     </div>
-  </div>
 </template>
 
 <script>
