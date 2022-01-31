@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('tags/all', [TagController::class, 'all']);
 Route::post('tags/create', [TagController::class, 'create']);
+Route::post('tags/edit', [TagController::class, 'update']);
+Route::post('tags/delete', [TagController::class, 'delete']);
 
 Route::get('/', function () {
     return view('welcome');

@@ -5377,6 +5377,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {};
@@ -5397,6 +5403,10 @@ __webpack_require__.r(__webpack_exports__);
         content.classList.add("toggled");
       }
     }
+  },
+  mounted: function mounted() {
+    var w = window.innerWidth;
+    if (w <= 660) this.btnToggle();
   }
 });
 
@@ -5776,46 +5786,276 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      tags: ""
+      data: {
+        tagName: ""
+      },
+      editData: {
+        tagName: "",
+        id: ""
+      },
+      tags: [],
+      isAdding: false,
+      myModal: "",
+      editModal: ""
     };
   },
   methods: {
     newTag: function newTag() {
-      var myModal = new bootstrap__WEBPACK_IMPORTED_MODULE_1__.Modal(document.getElementById("addTagModal"));
-      myModal.show();
+      this.myModal.show();
     },
-    getAll: function getAll() {
+    editTag: function editTag(obj) {
+      this.editData.tagName = obj.tagName;
+      this.editData.id = obj.id;
+      this.editModal.show();
+    },
+    addTag: function addTag() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var _yield$_this$callApi, data;
-
+        var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return _this.callApi("post", "tags/all");
+                if (!(_this.data.tagName.trim() == "")) {
+                  _context.next = 2;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.e("tag name is required!"));
 
               case 2:
-                _yield$_this$callApi = _context.sent;
-                data = _yield$_this$callApi.data;
-                _this.tags = data.tags;
+                _this.isAdding = true;
+                _context.next = 5;
+                return _this.callApi("post", "tags/create", _this.data);
 
               case 5:
+                res = _context.sent;
+
+                if (!(res.status !== 200)) {
+                  _context.next = 8;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.e("erro na operação"));
+
+              case 8:
+                _this.defaultFunc();
+
+                return _context.abrupt("return", _this.s(res.data.message));
+
+              case 10:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
       }))();
+    },
+    updateTag: function updateTag() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (!(_this2.editData.tagName.trim() == "")) {
+                  _context2.next = 2;
+                  break;
+                }
+
+                return _context2.abrupt("return", _this2.e("tag name is required!"));
+
+              case 2:
+                _this2.isAdding = true;
+                _context2.next = 5;
+                return _this2.callApi("post", "tags/edit", _this2.editData);
+
+              case 5:
+                res = _context2.sent;
+
+                if (!(res.status !== 200)) {
+                  _context2.next = 8;
+                  break;
+                }
+
+                return _context2.abrupt("return", _this2.e("erro na operação"));
+
+              case 8:
+                _this2.defaultFunc();
+
+                return _context2.abrupt("return", _this2.s(res.data.message));
+
+              case 10:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    delet: function delet(obj) {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (!confirm("Are you sure you want too delete the tag " + obj.tagName)) {
+                  _context3.next = 8;
+                  break;
+                }
+
+                _context3.next = 3;
+                return _this3.callApi("post", "tags/delete", {
+                  id: obj.id
+                });
+
+              case 3:
+                res = _context3.sent;
+
+                if (!(res.status !== 200)) {
+                  _context3.next = 6;
+                  break;
+                }
+
+                return _context3.abrupt("return", _this3.e("erro na operação"));
+
+              case 6:
+                _this3.defaultFunc();
+
+                return _context3.abrupt("return", _this3.s(res.data.message));
+
+              case 8:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    getAll: function getAll() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return _this4.callApi("post", "tags/all");
+
+              case 2:
+                res = _context4.sent;
+
+                if (!(res.status !== 200)) {
+                  _context4.next = 5;
+                  break;
+                }
+
+                return _context4.abrupt("return", _this4.e("Error on create the tag list"));
+
+              case 5:
+                _this4.tags = res.data.tags;
+
+              case 6:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+    defaultFunc: function defaultFunc() {
+      this.myModal.hide();
+      this.editModal.hide();
+      this.getAll();
+      this.data.tagName = "";
+      this.isAdding = false;
     }
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    this.myModal = new bootstrap__WEBPACK_IMPORTED_MODULE_1__.Modal(document.getElementById("addTagModal"));
+    this.editModal = new bootstrap__WEBPACK_IMPORTED_MODULE_1__.Modal(document.getElementById("editTagModal"));
+  },
   created: function created() {
     this.getAll();
   }
@@ -5909,16 +6149,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     callApi: function callApi(method, url) {
-      var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+      var dataObj = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
       try {
-        var _data = axios({
+        var data = axios({
           method: method,
           url: url,
-          data: _data
+          data: dataObj
         });
-
-        return _data;
+        return data;
       } catch (e) {
         return e.response;
       }
@@ -11081,7 +11320,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n._1side_menu.toggled[data-v-49c55934] {\n  left: -248px;\n}\n.header.toggled[data-v-49c55934] {\n  padding-left: 0px;\n}\n.content.toggled[data-v-49c55934] {\n  margin-left: 0px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n._1side_menu.toggled[data-v-49c55934] {\n  left: -248px;\n}\n.header.toggled[data-v-49c55934] {\n  padding-left: 0px;\n}\n.content.toggled[data-v-49c55934] {\n  margin-left: 0px;\n}\n@media screen and (max-width: 768px) {\n.content[data-v-49c55934] {\n    margin-left: 0px;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -76839,7 +77078,7 @@ var render = function () {
           ]),
         ]),
         _vm._v(" "),
-        _vm.tags.lenth > 0
+        _vm.tags.length > 0
           ? _c("div", [
               _c("div", { staticClass: "_overflow _table_div" }, [
                 _c(
@@ -76860,7 +77099,35 @@ var render = function () {
                           ),
                         ]),
                         _vm._v(" "),
-                        _vm._m(2, true),
+                        _c("td", [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-sm btn-info",
+                              on: {
+                                click: function ($event) {
+                                  $event.preventDefault()
+                                  return _vm.editTag(item)
+                                },
+                              },
+                            },
+                            [_vm._v("\n                Edit\n              ")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-sm btn-danger",
+                              on: {
+                                click: function ($event) {
+                                  $event.preventDefault()
+                                  return _vm.delet(item)
+                                },
+                              },
+                            },
+                            [_vm._v("\n                Delete\n              ")]
+                          ),
+                        ]),
                       ])
                     }),
                   ],
@@ -76874,7 +77141,165 @@ var render = function () {
       ]
     ),
     _vm._v(" "),
-    _vm._m(3),
+    _c(
+      "div",
+      { staticClass: "modal", attrs: { tabindex: "-1", id: "addTagModal" } },
+      [
+        _c("div", { staticClass: "modal-dialog" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("div", { staticClass: "mb-3" }, [
+                _c(
+                  "label",
+                  { staticClass: "form-label", attrs: { for: "tagName" } },
+                  [_vm._v("Tag name")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.data.tagName,
+                      expression: "data.tagName",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", id: "tagName" },
+                  domProps: { value: _vm.data.tagName },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.data, "tagName", $event.target.value)
+                    },
+                  },
+                }),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-secondary btn-sm",
+                  attrs: { type: "button", "data-bs-dismiss": "modal" },
+                },
+                [_vm._v("\n            fechar\n          ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-sm btn-success",
+                  attrs: {
+                    type: "button",
+                    disabled: _vm.isAdding,
+                    loading: _vm.isAdding,
+                  },
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      return _vm.addTag.apply(null, arguments)
+                    },
+                  },
+                },
+                [
+                  _vm._v(
+                    "\n            " +
+                      _vm._s(_vm.isAdding ? "Adding..." : "Add") +
+                      "\n          "
+                  ),
+                ]
+              ),
+            ]),
+          ]),
+        ]),
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "modal", attrs: { tabindex: "-1", id: "editTagModal" } },
+      [
+        _c("div", { staticClass: "modal-dialog" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(3),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("div", { staticClass: "mb-3" }, [
+                _c(
+                  "label",
+                  { staticClass: "form-label", attrs: { for: "tagName" } },
+                  [_vm._v("Tag name")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.editData.tagName,
+                      expression: "editData.tagName",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", id: "tagName" },
+                  domProps: { value: _vm.editData.tagName },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.editData, "tagName", $event.target.value)
+                    },
+                  },
+                }),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-secondary btn-sm",
+                  attrs: { type: "button", "data-bs-dismiss": "modal" },
+                },
+                [_vm._v("\n            fechar\n          ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-sm btn-success",
+                  attrs: {
+                    type: "button",
+                    disabled: _vm.isAdding,
+                    loading: _vm.isAdding,
+                  },
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      return _vm.updateTag()
+                    },
+                  },
+                },
+                [
+                  _vm._v(
+                    "\n            " +
+                      _vm._s(_vm.isAdding ? "Editing..." : "Edit") +
+                      "\n          "
+                  ),
+                ]
+              ),
+            ]),
+          ]),
+        ]),
+      ]
+    ),
   ])
 }
 var staticRenderFns = [
@@ -76902,66 +77327,35 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("button", { staticClass: "btn btn-sm btn-info" }, [_vm._v("Edit")]),
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title" }, [_vm._v("Adicionar tag")]),
       _vm._v(" "),
-      _c("button", { staticClass: "btn btn-sm btn-danger" }, [
-        _vm._v("Delete"),
-      ]),
+      _c("button", {
+        staticClass: "btn-close",
+        attrs: {
+          type: "button",
+          "data-bs-dismiss": "modal",
+          "aria-label": "Close",
+        },
+      }),
     ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "modal", attrs: { tabindex: "-1", id: "addTagModal" } },
-      [
-        _c("div", { staticClass: "modal-dialog modal-dialog-centered" }, [
-          _c("div", { staticClass: "modal-content" }, [
-            _c("div", { staticClass: "modal-header" }, [
-              _c("h5", { staticClass: "modal-title" }, [
-                _vm._v("Adicionar tag"),
-              ]),
-              _vm._v(" "),
-              _c("button", {
-                staticClass: "btn-close",
-                attrs: {
-                  type: "button",
-                  "data-bs-dismiss": "modal",
-                  "aria-label": "Close",
-                },
-              }),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "modal-body" }, [
-              _c("p", [_vm._v("Modal body text goes here.")]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "modal-footer" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-secondary btn-sm",
-                  attrs: { type: "button", "data-bs-dismiss": "modal" },
-                },
-                [_vm._v("\n            Close\n          ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-sm btn-primary",
-                  attrs: { type: "button" },
-                },
-                [_vm._v("\n            Save changes\n          ")]
-              ),
-            ]),
-          ]),
-        ]),
-      ]
-    )
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title" }, [_vm._v("Edit tag")]),
+      _vm._v(" "),
+      _c("button", {
+        staticClass: "btn-close",
+        attrs: {
+          type: "button",
+          "data-bs-dismiss": "modal",
+          "aria-label": "Close",
+        },
+      }),
+    ])
   },
 ]
 render._withStripped = true

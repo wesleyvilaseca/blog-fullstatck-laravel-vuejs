@@ -63,6 +63,12 @@
 .content.toggled {
   margin-left: 0px;
 }
+
+@media screen and (max-width: 768px) {
+  .content {
+    margin-left: 0px;
+  }
+}
 </style>
 
 <script>
@@ -86,6 +92,11 @@ export default {
         content.classList.add("toggled");
       }
     },
+  },
+  mounted() {
+    let w = window.innerWidth;
+    if (w <= 660) this.btnToggle();
+    
   },
 };
 </script>

@@ -5,12 +5,12 @@ export default {
         }
     },
     methods: {
-        callApi(method, url, data = null) {
+        callApi(method, url, dataObj = null) {
             try {
                 let data = axios({
                     method: method,
                     url: url,
-                    data: data
+                    data: dataObj
                 });
                 return data;
             } catch (e) {

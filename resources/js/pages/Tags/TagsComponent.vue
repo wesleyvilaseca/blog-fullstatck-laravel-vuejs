@@ -21,7 +21,7 @@
         </div>
       </div>
 
-      <div v-if="tags.lenth > 0">
+      <div v-if="tags.length > 0">
         <div class="_overflow _table_div">
           <table class="_table">
             <!-- TABLE TITLE -->
@@ -40,8 +40,18 @@
               </td>
               <!-- <td>Economy</td> -->
               <td>
-                <button class="btn btn-sm btn-info">Edit</button>
-                <button class="btn btn-sm btn-danger">Delete</button>
+                <button
+                  class="btn btn-sm btn-info"
+                  @click.prevent="editTag(item)"
+                >
+                  Edit
+                </button>
+                <button
+                  class="btn btn-sm btn-danger"
+                  @click.prevent="delet(item)"
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           </table>
@@ -52,7 +62,7 @@
     <!-- <Page :total="100" /> -->
 
     <div class="modal" tabindex="-1" id="addTagModal">
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">Adicionar tag</h5>
@@ -64,7 +74,15 @@
             ></button>
           </div>
           <div class="modal-body">
-            <p>Modal body text goes here.</p>
+            <div class="mb-3">
+              <label for="tagName" class="form-label">Tag name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="tagName"
+                v-model="data.tagName"
+              />
+            </div>
           </div>
           <div class="modal-footer">
             <button
@@ -72,10 +90,61 @@
               class="btn btn-secondary btn-sm"
               data-bs-dismiss="modal"
             >
-              Close
+              fechar
             </button>
-            <button type="button" class="btn btn-sm btn-primary">
-              Save changes
+            <button
+              type="button"
+              class="btn btn-sm btn-success"
+              @click.prevent="addTag"
+              :disabled="isAdding"
+              :loading="isAdding"
+            >
+              {{ isAdding ? "Adding..." : "Add" }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" tabindex="-1" id="editTagModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Edit tag</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="tagName" class="form-label">Tag name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="tagName"
+                v-model="editData.tagName"
+              />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm"
+              data-bs-dismiss="modal"
+            >
+              fechar
+            </button>
+            <button
+              type="button"
+              class="btn btn-sm btn-success"
+              @click.prevent="updateTag()"
+              :disabled="isAdding"
+              :loading="isAdding"
+            >
+              {{ isAdding ? "Editing..." : "Edit" }}
             </button>
           </div>
         </div>
@@ -89,20 +158,86 @@ import { Modal } from "bootstrap";
 export default {
   data() {
     return {
-      tags: "",
+      data: {
+        tagName: "",
+      },
+      editData: {
+        tagName: "",
+        id: "",
+      },
+      tags: [],
+      isAdding: false,
+      myModal: "",
+      editModal: "",
     };
   },
   methods: {
     newTag() {
-      var myModal = new Modal(document.getElementById("addTagModal"));
-      myModal.show();
+      this.myModal.show();
+    },
+    editTag(obj) {
+      this.editData.tagName = obj.tagName;
+      this.editData.id = obj.id;
+
+      this.editModal.show();
+    },
+    async addTag() {
+      if (this.data.tagName.trim() == "")
+        return this.e("tag name is required!");
+
+      this.isAdding = true;
+      const res = await this.callApi("post", "tags/create", this.data);
+
+      if (res.status !== 200) {
+        return this.e("erro na operação");
+      }
+
+      this.defaultFunc();
+      return this.s(res.data.message);
+    },
+    async updateTag() {
+      if (this.editData.tagName.trim() == "")
+        return this.e("tag name is required!");
+
+      this.isAdding = true;
+      const res = await this.callApi("post", "tags/edit", this.editData);
+
+      if (res.status !== 200) {
+        return this.e("erro na operação");
+      }
+
+      this.defaultFunc();
+      return this.s(res.data.message);
+    },
+    async delet(obj) {
+      if (confirm("Are you sure you want too delete the tag " + obj.tagName)) {
+        const res = await this.callApi("post", "tags/delete", {id: obj.id});
+        if (res.status !== 200) {
+          return this.e("erro na operação");
+        }
+
+        this.defaultFunc();
+        return this.s(res.data.message);
+      }
     },
     async getAll() {
-      const { data } = await this.callApi("post", "tags/all");
-      this.tags = data.tags;
+      const res = await this.callApi("post", "tags/all");
+      if (res.status !== 200) return this.e("Error on create the tag list");
+
+      this.tags = res.data.tags;
+    },
+    defaultFunc() {
+      this.myModal.hide();
+      this.editModal.hide();
+      this.getAll();
+      this.data.tagName = "";
+      this.isAdding = false;
     },
   },
-  mounted() {},
+  mounted() {
+    this.myModal = new Modal(document.getElementById("addTagModal"));
+    this.editModal = new Modal(document.getElementById("editTagModal"));
+  },
   created() {
     this.getAll();
   },
