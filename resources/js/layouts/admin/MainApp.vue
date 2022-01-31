@@ -15,13 +15,18 @@
           <div class="_1side_menu_list">
             <ul class="_1side_menu_list_ul">
               <li>
-                <router-link to="/"
+                <router-link to="/admin"
                   ><Icon type="ios-speedometer" /> DashBoard
                 </router-link>
               </li>
               <li>
-                <router-link to="/tags">
+                <router-link to="/admin/tags">
                   <Icon type="ios-speedometer" /> Tags
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/admin/category">
+                  <Icon type="ios-speedometer" /> Category
                 </router-link>
               </li>
             </ul>

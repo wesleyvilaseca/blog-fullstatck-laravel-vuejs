@@ -1,19 +1,20 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "../pages/Home/HomeComponent";
-import Tags from "../pages/Tags/TagsComponent";
-
 
 Vue.use(Router);
 
 const routes = [
     {
-        path: '/',
-        component: Home
+        path: '/admin',
+        component: () => import("../pages/admin/Home/HomeComponent"),
     },
     {
-        path: '/tags',
-        component: Tags
+        path: '/admin/tags',
+        component: () => import("../pages/admin/Tags/TagsComponent"),
+    },
+    {
+        path: '/admin/category',
+        component: () => import("../pages/admin/Category/CategoryComponent")
     }
 ];
 

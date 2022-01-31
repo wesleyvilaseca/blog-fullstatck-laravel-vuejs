@@ -12,10 +12,10 @@
     >
       <div class="row">
         <div class="col-md-6">
-          <p class="_title0">Tags</p>
+          <p class="_title0">Category</p>
         </div>
         <div class="col-md-6 text-right">
-          <button class="btn btn-sm btn-success" @click.prevent="newTag()">
+          <button class="btn btn-sm btn-success" @click.prevent="newCategory()">
             Add
           </button>
         </div>
@@ -61,11 +61,11 @@
     </div>
     <!-- <Page :total="100" /> -->
 
-    <div class="modal" tabindex="-1" id="addTagModal">
+    <div class="modal" tabindex="-1" id="addCategory">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Adicionar tag</h5>
+            <h5 class="modal-title">Adicionar category</h5>
             <button
               type="button"
               class="btn-close"
@@ -74,39 +74,57 @@
             ></button>
           </div>
           <div class="modal-body">
-            <div class="mb-3">
-              <label for="tagName" class="form-label">Tag name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="tagName"
-                v-model="data.tagName"
-              />
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary btn-sm"
-              data-bs-dismiss="modal"
-            >
-              fechar
-            </button>
-            <button
-              type="button"
-              class="btn btn-sm btn-success"
-              @click.prevent="addTag"
-              :disabled="isAdding"
-              :loading="isAdding"
-            >
-              {{ isAdding ? "Adding..." : "Add" }}
-            </button>
+            <form @submit.stop.prevent="addCategory()">
+              <div class="mb-3">
+                <label for="tagName" class="form-label">Category name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  v-model="categoryAdd.name"
+                />
+              </div>
+
+              <div class="mb-3">
+                <Upload
+                  type="drag"
+                  :headers="{ 'X-CSRF-TOKEN': token }"
+                  action="/app/upload"
+                >
+                  <div style="padding: 20px 0">
+                    <Icon
+                      type="ios-cloud-upload"
+                      size="52"
+                      style="color: #3399ff"
+                    />
+                    <p>Click or drag files here to upload</p>
+                  </div>
+                </Upload>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-sm"
+                  data-bs-dismiss="modal"
+                >
+                  fechar
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-sm btn-success"
+                  :disabled="isAdding"
+                  :loading="isAdding"
+                >
+                  {{ isAdding ? "Adding..." : "Add" }}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="modal" tabindex="-1" id="editTagModal">
+    <!-- <div class="modal" tabindex="-1" id="editTagModal">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -149,7 +167,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -158,22 +176,23 @@ import { Modal } from "bootstrap";
 export default {
   data() {
     return {
-      data: {
-        tagName: "",
+      categoryAdd: {
+        name: "",
       },
-      editData: {
-        tagName: "",
+      categoryEdit: {
+        name: "",
         id: "",
       },
       tags: [],
       isAdding: false,
-      myModal: "",
+      addModal: "",
       editModal: "",
+      token: "",
     };
   },
   methods: {
-    newTag() {
-      this.myModal.show();
+    newCategory() {
+      this.addModal.show();
     },
     editTag(obj) {
       this.editData.tagName = obj.tagName;
@@ -181,7 +200,7 @@ export default {
 
       this.editModal.show();
     },
-    async addTag() {
+    async addCategory() {
       if (this.data.tagName.trim() == "")
         return this.e("tag name is required!");
 
@@ -200,7 +219,7 @@ export default {
         return this.e("tag name is required!");
 
       this.isAdding = true;
-      const res = await this.callApi("post", "tags/edit", this.editData);
+      const res = await this.callApi("post", "/tags/edit", this.editData);
 
       if (res.status !== 200) {
         return this.e("erro na operação");
@@ -211,7 +230,7 @@ export default {
     },
     async delet(obj) {
       if (confirm("Are you sure you want too delete the tag " + obj.tagName)) {
-        const res = await this.callApi("post", "tags/delete", {id: obj.id});
+        const res = await this.callApi("post", "/tags/delete", { id: obj.id });
         if (res.status !== 200) {
           return this.e("erro na operação");
         }
@@ -221,7 +240,7 @@ export default {
       }
     },
     async getAll() {
-      const res = await this.callApi("post", "tags/all");
+      const res = await this.callApi("get", "/tags/all");
       if (res.status !== 200) return this.e("Error on create the tag list");
 
       this.tags = res.data.tags;
@@ -235,8 +254,9 @@ export default {
     },
   },
   mounted() {
-    this.myModal = new Modal(document.getElementById("addTagModal"));
-    this.editModal = new Modal(document.getElementById("editTagModal"));
+    this.token = window.Laravel.csrfToken;
+    this.addModal = new Modal(document.getElementById("addCategory"));
+    // this.editModal = new Modal(document.getElementById("editTagModal"));
   },
   created() {
     this.getAll();

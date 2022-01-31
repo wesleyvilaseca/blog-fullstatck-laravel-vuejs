@@ -29,4 +29,11 @@
     </body>
 
     <script src="{{mix('/js/app.js')}}"></script>
+    <script>
+        (function () {
+            window.Laravel = {
+                csrfToken: '{{ csrf_token() }}'
+            };
+        })();
+    </script>
 </html>
