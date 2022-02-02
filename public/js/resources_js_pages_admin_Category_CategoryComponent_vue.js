@@ -180,42 +180,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       categoryAdd: {
-        name: ""
+        name: "",
+        iconImage: ""
       },
       categoryEdit: {
         name: "",
         id: ""
       },
-      tags: [],
+      categories: [],
       isAdding: false,
       addModal: "",
       editModal: "",
@@ -240,34 +217,42 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (!(_this.data.tagName.trim() == "")) {
+                if (!(_this.categoryAdd.name.trim() == "")) {
                   _context.next = 2;
                   break;
                 }
 
-                return _context.abrupt("return", _this.e("tag name is required!"));
+                return _context.abrupt("return", _this.e("category name is required!"));
 
               case 2:
-                _this.isAdding = true;
-                _context.next = 5;
-                return _this.callApi("post", "tags/create", _this.data);
+                if (!(_this.categoryAdd.iconImage.trim() == "")) {
+                  _context.next = 4;
+                  break;
+                }
 
-              case 5:
+                return _context.abrupt("return", _this.e("Icon is required!"));
+
+              case 4:
+                _this.isAdding = true;
+                _context.next = 7;
+                return _this.callApi("post", "/category/create", _this.categoryAdd);
+
+              case 7:
                 res = _context.sent;
 
                 if (!(res.status !== 200)) {
-                  _context.next = 8;
+                  _context.next = 10;
                   break;
                 }
 
                 return _context.abrupt("return", _this.e("erro na operação"));
 
-              case 8:
+              case 10:
                 _this.defaultFunc();
 
                 return _context.abrupt("return", _this.s(res.data.message));
 
-              case 10:
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -371,7 +356,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context4.prev = _context4.next) {
               case 0:
                 _context4.next = 2;
-                return _this4.callApi("get", "/tags/all");
+                return _this4.callApi("get", "/category/all");
 
               case 2:
                 res = _context4.sent;
@@ -384,7 +369,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context4.abrupt("return", _this4.e("Error on create the tag list"));
 
               case 5:
-                _this4.tags = res.data.tags;
+                _this4.categories = res.data.categories;
 
               case 6:
               case "end":
@@ -394,12 +379,73 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee4);
       }))();
     },
+    handleView: function handleView(name) {
+      this.imgName = name;
+      this.visible = true;
+    },
+    handleRemove: function handleRemove(file) {
+      var fileList = this.$refs.upload.fileList;
+      this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
+    },
+    handleSuccess: function handleSuccess(res, file) {
+      this.categoryAdd.iconImage = res;
+    },
+    handleFormatError: function handleFormatError(file) {
+      this.$Notice.warning({
+        title: 'The file format is incorrect',
+        desc: 'File format of ' + file.name + ' is incorrect, please select jpg or png.'
+      });
+    },
+    handleMaxSize: function handleMaxSize(file) {
+      this.$Notice.warning({
+        title: 'Exceeding file size limit',
+        desc: 'File  ' + file.name + ' is too large, no more than 2M.'
+      });
+    },
     defaultFunc: function defaultFunc() {
-      this.myModal.hide();
-      this.editModal.hide();
+      this.addModal.hide(); // this.editModal.hide();
+
       this.getAll();
-      this.data.tagName = "";
+      this.categoryAdd.name = "";
+      this.categoryAdd.iconImage = "";
       this.isAdding = false;
+    },
+    deleteImage: function deleteImage() {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+        var image, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                image = _this5.categoryAdd.iconImage;
+                _this5.categoryAdd.iconImage = '';
+                _context5.next = 4;
+                return _this5.callApi('post', '/app/upload-delete', {
+                  imagename: image
+                });
+
+              case 4:
+                res = _context5.sent;
+
+                _this5.$refs.uploads.clearFiles();
+
+                if (!(res.status !== 200)) {
+                  _context5.next = 9;
+                  break;
+                }
+
+                _this5.categoryAdd.iconImage = image;
+                return _context5.abrupt("return", _this5.e("erro na operação"));
+
+              case 9:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
     }
   },
   mounted: function mounted() {
@@ -1270,7 +1316,7 @@ var render = function () {
       "div",
       {
         staticClass:
-          "\n      _1adminOverveiw_table_recent\n      _box_shadow\n      _border_radious\n      _mar_b30\n      _p20\n    ",
+          "\r\n        _1adminOverveiw_table_recent\r\n        _box_shadow\r\n        _border_radious\r\n        _mar_b30\r\n        _p20\r\n      ",
       },
       [
         _c("div", { staticClass: "row" }, [
@@ -1288,12 +1334,12 @@ var render = function () {
                   },
                 },
               },
-              [_vm._v("\n          Add\n        ")]
+              [_vm._v("\r\n                    Add\r\n                ")]
             ),
           ]),
         ]),
         _vm._v(" "),
-        _vm.tags.length > 0
+        _vm.categories.length > 0
           ? _c("div", [
               _c("div", { staticClass: "_overflow _table_div" }, [
                 _c(
@@ -1302,16 +1348,25 @@ var render = function () {
                   [
                     _vm._m(1),
                     _vm._v(" "),
-                    _vm._l(_vm.tags, function (item, index) {
+                    _vm._l(_vm.categories, function (item, index) {
                       return _c("tr", { key: index }, [
                         _c("td", [_vm._v(_vm._s(item.id))]),
                         _vm._v(" "),
                         _c("td", { staticClass: "_table_name" }, [
                           _vm._v(
-                            "\n              " +
-                              _vm._s(item.tagName) +
-                              "\n            "
+                            "\r\n                            " +
+                              _vm._s(item.categoryName) +
+                              "\r\n                        "
                           ),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "table_image" }, [
+                          _c("img", {
+                            attrs: {
+                              src: "/uploads/" + item.iconImage,
+                              alt: "",
+                            },
+                          }),
                         ]),
                         _vm._v(" "),
                         _c("td", [
@@ -1326,7 +1381,11 @@ var render = function () {
                                 },
                               },
                             },
-                            [_vm._v("\n                Edit\n              ")]
+                            [
+                              _vm._v(
+                                "\r\n                                Edit\r\n                            "
+                              ),
+                            ]
                           ),
                           _vm._v(" "),
                           _c(
@@ -1340,7 +1399,11 @@ var render = function () {
                                 },
                               },
                             },
-                            [_vm._v("\n                Delete\n              ")]
+                            [
+                              _vm._v(
+                                "\r\n                                Delete\r\n                            "
+                              ),
+                            ]
                           ),
                         ]),
                       ])
@@ -1380,7 +1443,7 @@ var render = function () {
                   _c("div", { staticClass: "mb-3" }, [
                     _c(
                       "label",
-                      { staticClass: "form-label", attrs: { for: "tagName" } },
+                      { staticClass: "form-label", attrs: { for: "name" } },
                       [_vm._v("Category name")]
                     ),
                     _vm._v(" "),
@@ -1414,9 +1477,19 @@ var render = function () {
                       _c(
                         "Upload",
                         {
+                          ref: "uploads",
                           attrs: {
                             type: "drag",
-                            headers: { "X-CSRF-TOKEN": _vm.token },
+                            headers: {
+                              "X-CSRF-TOKEN": _vm.token,
+                              "X-Requested-With": "XMLHttpRequest",
+                            },
+                            multiple: false,
+                            "on-success": _vm.handleSuccess,
+                            format: ["jpg", "jpeg", "png"],
+                            "max-size": 2048,
+                            "on-format-error": _vm.handleFormatError,
+                            "on-exceeded-size": _vm.handleMaxSize,
                             action: "/app/upload",
                           },
                         },
@@ -1438,6 +1511,34 @@ var render = function () {
                           ),
                         ]
                       ),
+                      _vm._v(" "),
+                      _vm.categoryAdd.iconImage
+                        ? _c("div", { staticClass: "demo-upload-list" }, [
+                            _c("img", {
+                              attrs: {
+                                src: "/uploads/" + _vm.categoryAdd.iconImage,
+                                alt: "",
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "demo-upload-list-cover" },
+                              [
+                                _c("Icon", {
+                                  attrs: { type: "ios-trash-outline" },
+                                  on: {
+                                    click: function ($event) {
+                                      $event.preventDefault()
+                                      return _vm.deleteImage()
+                                    },
+                                  },
+                                }),
+                              ],
+                              1
+                            ),
+                          ])
+                        : _vm._e(),
                     ],
                     1
                   ),
@@ -1449,7 +1550,11 @@ var render = function () {
                         staticClass: "btn btn-secondary btn-sm",
                         attrs: { type: "button", "data-bs-dismiss": "modal" },
                       },
-                      [_vm._v("\n                fechar\n              ")]
+                      [
+                        _vm._v(
+                          "\r\n                                fechar\r\n                            "
+                        ),
+                      ]
                     ),
                     _vm._v(" "),
                     _c(
@@ -1464,9 +1569,9 @@ var render = function () {
                       },
                       [
                         _vm._v(
-                          "\n                " +
+                          "\r\n                                " +
                             _vm._s(_vm.isAdding ? "Adding..." : "Add") +
-                            "\n              "
+                            "\r\n                            "
                         ),
                       ]
                     ),
@@ -1478,6 +1583,8 @@ var render = function () {
         ]),
       ]
     ),
+    _vm._v(" "),
+    _c("link", { attrs: { rel: "stylesheet", href: "style.css" } }),
   ])
 }
 var staticRenderFns = [
@@ -1496,7 +1603,9 @@ var staticRenderFns = [
     return _c("tr", [
       _c("th", [_vm._v("id")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Tag name")]),
+      _c("th", [_vm._v("Category name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Thumb")]),
       _vm._v(" "),
       _c("th", [_vm._v("Action")]),
     ])

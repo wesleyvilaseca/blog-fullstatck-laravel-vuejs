@@ -138,54 +138,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -231,7 +183,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 _this.isAdding = true;
                 _context.next = 5;
-                return _this.callApi("post", "tags/create", _this.data);
+                return _this.callApi("post", "/tags/create", _this.data);
 
               case 5:
                 res = _context.sent;
@@ -1251,7 +1203,7 @@ var render = function () {
       "div",
       {
         staticClass:
-          "\n      _1adminOverveiw_table_recent\n      _box_shadow\n      _border_radious\n      _mar_b30\n      _p20\n    ",
+          "\r\n        _1adminOverveiw_table_recent\r\n        _box_shadow\r\n        _border_radious\r\n        _mar_b30\r\n        _p20\r\n      ",
       },
       [
         _c("div", { staticClass: "row" }, [
@@ -1269,7 +1221,7 @@ var render = function () {
                   },
                 },
               },
-              [_vm._v("\n          Add\n        ")]
+              [_vm._v("\r\n                    Add\r\n                ")]
             ),
           ]),
         ]),
@@ -1289,9 +1241,9 @@ var render = function () {
                         _vm._v(" "),
                         _c("td", { staticClass: "_table_name" }, [
                           _vm._v(
-                            "\n              " +
+                            "\r\n                            " +
                               _vm._s(item.tagName) +
-                              "\n            "
+                              "\r\n                        "
                           ),
                         ]),
                         _vm._v(" "),
@@ -1307,7 +1259,11 @@ var render = function () {
                                 },
                               },
                             },
-                            [_vm._v("\n                Edit\n              ")]
+                            [
+                              _vm._v(
+                                "\r\n                                Edit\r\n                            "
+                              ),
+                            ]
                           ),
                           _vm._v(" "),
                           _c(
@@ -1321,7 +1277,11 @@ var render = function () {
                                 },
                               },
                             },
-                            [_vm._v("\n                Delete\n              ")]
+                            [
+                              _vm._v(
+                                "\r\n                                Delete\r\n                            "
+                              ),
+                            ]
                           ),
                         ]),
                       ])
@@ -1384,7 +1344,11 @@ var render = function () {
                   staticClass: "btn btn-secondary btn-sm",
                   attrs: { type: "button", "data-bs-dismiss": "modal" },
                 },
-                [_vm._v("\n            fechar\n          ")]
+                [
+                  _vm._v(
+                    "\r\n                        fechar\r\n                    "
+                  ),
+                ]
               ),
               _vm._v(" "),
               _c(
@@ -1405,9 +1369,9 @@ var render = function () {
                 },
                 [
                   _vm._v(
-                    "\n            " +
+                    "\r\n                        " +
                       _vm._s(_vm.isAdding ? "Adding..." : "Add") +
-                      "\n          "
+                      "\r\n                    "
                   ),
                 ]
               ),
@@ -1464,7 +1428,11 @@ var render = function () {
                   staticClass: "btn btn-secondary btn-sm",
                   attrs: { type: "button", "data-bs-dismiss": "modal" },
                 },
-                [_vm._v("\n            fechar\n          ")]
+                [
+                  _vm._v(
+                    "\r\n                        fechar\r\n                    "
+                  ),
+                ]
               ),
               _vm._v(" "),
               _c(
@@ -1485,9 +1453,9 @@ var render = function () {
                 },
                 [
                   _vm._v(
-                    "\n            " +
+                    "\r\n                        " +
                       _vm._s(_vm.isAdding ? "Editing..." : "Edit") +
-                      "\n          "
+                      "\r\n                    "
                   ),
                 ]
               ),

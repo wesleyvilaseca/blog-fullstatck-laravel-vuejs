@@ -20,7 +20,10 @@ Route::post('tags/create', [TagController::class, 'create']);
 Route::post('tags/edit', [TagController::class, 'update']);
 Route::post('tags/delete', [TagController::class, 'delete']);
 
+Route::get("/category/all", [CategoryController::class, 'all']);
+Route::post("/category/create", [CategoryController::class, 'create']);
 Route::post('app/upload', [CategoryController::class, 'upload']);
+Route::post('app/upload-delete', [CategoryController::class, 'upload_delete']);
 
 Route::get('/', function () {
     return view('welcome');
