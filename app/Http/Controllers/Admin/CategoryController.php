@@ -50,6 +50,7 @@ class CategoryController extends Controller
             return response()->json($validate->errors(), 203);
         }
 
+        // $picName = $request->file->getClientOriginalName();
         $picName = time() . '.' . $request->file->extension();
         $request->file->move(public_path('uploads'), $picName);
         return $picName;
