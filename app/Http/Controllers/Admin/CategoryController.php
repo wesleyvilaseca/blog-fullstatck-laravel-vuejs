@@ -11,7 +11,8 @@ class CategoryController extends Controller
 {
     //
 
-    public function all() {
+    public function all()
+    {
         $tags = Category::orderBy('id', 'desc')->get();
         return response()->json(['message' => '', 'categories' => $tags], 200);
     }
@@ -37,7 +38,63 @@ class CategoryController extends Controller
         }
 
         return response()->json(['message' => 'Success on operation'], 200);
+    }
 
+    public function update(Request $request)
+    {
+        $validate = Validator::make($request->all(), [
+            'name'      => ['required'],
+            'iconImage'         => ['required'],
+            'id'                => ['required'],
+        ]);
+
+        if ($validate->fails()) {
+            return response()->json($validate->errors(), 203);
+        }
+
+        $category = Category::find($request->id);
+        if (!$category) {
+            return response()->json(['message' => 'operation not authorized!'], 203);
+        }
+
+        if ($category->iconImage !== $request->iconImage) {
+            $result = $this->deleteFile($category->iconImage);
+        }
+
+        $category->categoryName = $request->name;
+        $category->iconImage    = $request->iconImage;
+        $result                 = $category->update();
+
+        if (!$result) {
+            return response()->json(['message' => 'Error on operation, please try again!'], 203);
+        }
+
+        return response()->json(['message' => 'Success on operation'], 200);
+    }
+
+    public function delete(Request $request)
+    {
+        $validate = Validator::make($request->all(), [
+            'id' => ['required']
+        ]);
+
+        if ($validate->fails()) {
+            return response()->json($validate->errors(), 203);
+        }
+
+        $category = Category::find($request->id);
+        if(!$category) {
+            return response()->json(['message' => 'operation not authorized!'], 203); 
+        }
+
+        $result = $this->deleteFile($category->iconImage);
+
+        $response = $category->delete();
+        if (!$response) {
+            return response()->json(['message' => 'Error on operation, please try again!'], 203);
+        }
+
+        return response()->json(['message' => 'Success on operation'], 200);
     }
 
     public function upload(Request $request)
@@ -58,7 +115,12 @@ class CategoryController extends Controller
 
     public function upload_delete(Request $request)
     {
-        $filename = $request->imagename;
+        return $this->deleteFile($request->imagename);
+    }
+
+    private function deleteFile(string $file)
+    {
+        $filename = $file;
         $file_patch = public_path() . '/uploads/' . $filename;
         if (file_exists($file_patch)) {
             @unlink($file_patch);

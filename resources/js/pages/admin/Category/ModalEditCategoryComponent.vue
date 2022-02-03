@@ -8,14 +8,18 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form @submit.stop.prevent="editCategory()">
+                    <form @submit.stop.prevent="sendEditCategory()">
                         <div class="mb-3">
                             <label for="name" class="form-label">Category name</label>
                             <input type="text" class="form-control" id="name" v-model="categoryEdit.name" />
                         </div>
 
                         <div class="mb-3">
-                            <Upload v-show="!categoryEdit.iconImage" type="drag" :headers="{ 'X-CSRF-TOKEN': token, 'X-Requested-With' : 'XMLHttpRequest' }" ref="uploads" :multiple="false" :on-success="handleSuccessEdit" :format="['jpg', 'jpeg', 'png']" :max-size="2048" :on-format-error="handleFormatErrorEdit" :on-exceeded-size="handleMaxSizeEdit" action="/app/upload">
+                            <Upload v-show="!categoryEdit.iconImage" type="drag" 
+                            :headers="{ 'X-CSRF-TOKEN': token, 'X-Requested-With' : 'XMLHttpRequest' }" 
+                            ref="uploads" :multiple="false" :on-success="handleSuccessEdit" 
+                            :format="['jpg', 'jpeg', 'png']" :max-size="2048" 
+                            :on-format-error="handleFormatErrorEdit" :on-exceeded-size="handleMaxSizeEdit" action="/category/photo-upload">
 
                                 <div style="padding: 20px 0">
                                     <Icon type="ios-cloud-upload" size="52" style="color: #3399ff" />
@@ -81,11 +85,25 @@ export default {
             },
             editModal: "",
             token: "",
-            isEditing: "",
+            isEditing: false,
             first: true,
         };
     },
     methods: {
+        async sendEditCategory() {
+            if (this.categoryEdit.name.trim() == "") return this.e("category name is required!");
+            if (this.categoryEdit.iconImage.trim() == "") return this.e("Icon is required!");
+
+            this.isAdding = true;
+            const res = await this.callApi("post", "/category/edit", this.categoryEdit);
+
+            if (res.status !== 200) {
+                return this.e("erro na operação");
+            }
+
+            this.defaultFunc();
+            return this.s(res.data.message);
+        },
         editCategory(obj) {
             this.categoryEdit.name = obj.categoryName;
             this.categoryEdit.iconImage = obj.iconImage;
@@ -110,7 +128,7 @@ export default {
             this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
         },
         handleSuccessEdit(res, file) {
-            this.categoryAdd.iconImage = res;
+            this.categoryEdit.iconImage = res;
         },
         handleFormatErrorEdit(file) {
             this.$Notice.warning({
@@ -130,17 +148,25 @@ export default {
                 this.first = false;
                 return;
             }
-            let image = this.categoryAdd.iconImage;
-            this.categoryAdd.iconImage = '';
-            const res = await this.callApi('post', '/app/upload-delete', {
+            let image = this.categoryEdit.iconImage;
+            this.categoryEdit.iconImage = '';
+            const res = await this.callApi('post', '/category/photo-delete', {
                 imagename: image
             });
             this.$refs.uploads.clearFiles();
             if (res.status !== 200) {
-                this.categoryAdd.iconImage = image;
+                this.categoryEdit.iconImage = image;
                 return this.e("erro na operação");
             }
-        }
+        },
+        defaultFunc() {
+            this.editModal.hide();
+            this.$parent.getAll();
+            this.categoryEdit.name = "";
+            this.categoryEdit.iconImage = "";
+            this.categoryEdit.id = "";
+            this.isAdding = false;
+        },
     },
     mounted() {
         this.token = window.Laravel.csrfToken;

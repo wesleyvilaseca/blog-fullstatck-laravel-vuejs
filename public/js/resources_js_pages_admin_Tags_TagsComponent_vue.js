@@ -330,7 +330,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     defaultFunc: function defaultFunc() {
       this.myModal.hide();
       this.editModal.hide();
-      this.getAll();
+      this.$parent.getAll();
       this.data.tagName = "";
       this.isAdding = false;
     }

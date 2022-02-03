@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\TagController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\CategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,15 +16,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('tags/all', [TagController::class, 'all']);
-Route::post('tags/create', [TagController::class, 'create']);
-Route::post('tags/edit', [TagController::class, 'update']);
-Route::post('tags/delete', [TagController::class, 'delete']);
+Route::prefix('/tags')->group(function () {
+    Route::get('/all', [TagController::class, 'all']);
+    Route::post('/create', [TagController::class, 'create']);
+    Route::post('/edit', [TagController::class, 'update']);
+    Route::post('/delete', [TagController::class, 'delete']);
+});
 
-Route::get("/category/all", [CategoryController::class, 'all']);
-Route::post("/category/create", [CategoryController::class, 'create']);
-Route::post('app/upload', [CategoryController::class, 'upload']);
-Route::post('app/upload-delete', [CategoryController::class, 'upload_delete']);
+
+Route::prefix('/category')->group(function () {
+    Route::get("/all", [CategoryController::class, 'all']);
+    Route::post("/create", [CategoryController::class, 'create']);
+    Route::post("/edit", [CategoryController::class, 'update']);
+    Route::post("/delete", [CategoryController::class, 'delete']);
+    Route::post('/photo-upload', [CategoryController::class, 'upload']);
+    Route::post('/photo-delete', [CategoryController::class, 'upload_delete']);
+});
+
 
 Route::get('/', function () {
     return view('welcome');

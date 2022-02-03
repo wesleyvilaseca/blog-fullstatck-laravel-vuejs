@@ -21,7 +21,7 @@
                          :on-success="handleSuccessAdd" 
                          :format="['jpg', 'jpeg', 'png']" 
                          :max-size="2048" :on-format-error="handleFormatErrorAdd" 
-                         :on-exceeded-size="handleMaxSizeAdd" action="/app/upload">
+                         :on-exceeded-size="handleMaxSizeAdd" action="/category/photo-upload">
 
                             <div style="padding: 20px 0">
                                 <Icon type="ios-cloud-upload" size="52" style="color: #3399ff" />
@@ -118,7 +118,7 @@ export default {
         async deleteImage() {
             let image = this.categoryAdd.iconImage;
             this.categoryAdd.iconImage = '';
-            const res = await this.callApi('post', '/app/upload-delete', {
+            const res = await this.callApi('post', '/category/photo-delete', {
                 imagename: image
             });
             this.$refs.uploads.clearFiles();

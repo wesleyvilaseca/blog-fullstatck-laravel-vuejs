@@ -141,6 +141,48 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    delet: function delet(obj) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (!confirm("Are you sure you want too delete the tag " + obj.tagName)) {
+                  _context2.next = 8;
+                  break;
+                }
+
+                _context2.next = 3;
+                return _this2.callApi("post", "/category/delete", {
+                  id: obj.id
+                });
+
+              case 3:
+                res = _context2.sent;
+
+                if (!(res.status !== 200)) {
+                  _context2.next = 6;
+                  break;
+                }
+
+                return _context2.abrupt("return", _this2.e("erro na operação"));
+
+              case 6:
+                _this2.getAll();
+
+                return _context2.abrupt("return", _this2.s(res.data.message));
+
+              case 8:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   },
   mounted: function mounted() {},
@@ -336,7 +378,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 image = _this2.categoryAdd.iconImage;
                 _this2.categoryAdd.iconImage = '';
                 _context2.next = 4;
-                return _this2.callApi('post', '/app/upload-delete', {
+                return _this2.callApi('post', '/category/photo-delete', {
                   imagename: image
                 });
 
@@ -459,6 +501,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -472,11 +518,63 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       editModal: "",
       token: "",
-      isEditing: "",
+      isEditing: false,
       first: true
     };
   },
   methods: {
+    sendEditCategory: function sendEditCategory() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (!(_this.categoryEdit.name.trim() == "")) {
+                  _context.next = 2;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.e("category name is required!"));
+
+              case 2:
+                if (!(_this.categoryEdit.iconImage.trim() == "")) {
+                  _context.next = 4;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.e("Icon is required!"));
+
+              case 4:
+                _this.isAdding = true;
+                _context.next = 7;
+                return _this.callApi("post", "/category/edit", _this.categoryEdit);
+
+              case 7:
+                res = _context.sent;
+
+                if (!(res.status !== 200)) {
+                  _context.next = 10;
+                  break;
+                }
+
+                return _context.abrupt("return", _this.e("erro na operação"));
+
+              case 10:
+                _this.defaultFunc();
+
+                return _context.abrupt("return", _this.s(res.data.message));
+
+              case 12:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
     editCategory: function editCategory(obj) {
       this.categoryEdit.name = obj.categoryName;
       this.categoryEdit.iconImage = obj.iconImage;
@@ -501,7 +599,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
     },
     handleSuccessEdit: function handleSuccessEdit(res, file) {
-      this.categoryAdd.iconImage = res;
+      this.categoryEdit.iconImage = res;
     },
     handleFormatErrorEdit: function handleFormatErrorEdit(file) {
       this.$Notice.warning({
@@ -516,51 +614,59 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     deleteImageEdit: function deleteImageEdit() {
-      var _this = this;
+      var _this2 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         var image, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                if (!_this.first) {
-                  _context.next = 4;
+                if (!_this2.first) {
+                  _context2.next = 4;
                   break;
                 }
 
-                _this.categoryEdit.iconImage = "";
-                _this.first = false;
-                return _context.abrupt("return");
+                _this2.categoryEdit.iconImage = "";
+                _this2.first = false;
+                return _context2.abrupt("return");
 
               case 4:
-                image = _this.categoryAdd.iconImage;
-                _this.categoryAdd.iconImage = '';
-                _context.next = 8;
-                return _this.callApi('post', '/app/upload-delete', {
+                image = _this2.categoryEdit.iconImage;
+                _this2.categoryEdit.iconImage = '';
+                _context2.next = 8;
+                return _this2.callApi('post', '/category/photo-delete', {
                   imagename: image
                 });
 
               case 8:
-                res = _context.sent;
+                res = _context2.sent;
 
-                _this.$refs.uploads.clearFiles();
+                _this2.$refs.uploads.clearFiles();
 
                 if (!(res.status !== 200)) {
-                  _context.next = 13;
+                  _context2.next = 13;
                   break;
                 }
 
-                _this.categoryAdd.iconImage = image;
-                return _context.abrupt("return", _this.e("erro na operação"));
+                _this2.categoryEdit.iconImage = image;
+                return _context2.abrupt("return", _this2.e("erro na operação"));
 
               case 13:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee);
+        }, _callee2);
       }))();
+    },
+    defaultFunc: function defaultFunc() {
+      this.editModal.hide();
+      this.$parent.getAll();
+      this.categoryEdit.name = "";
+      this.categoryEdit.iconImage = "";
+      this.categoryEdit.id = "";
+      this.isAdding = false;
     }
   },
   mounted: function mounted() {
@@ -1866,7 +1972,7 @@ var render = function () {
                           "max-size": 2048,
                           "on-format-error": _vm.handleFormatErrorAdd,
                           "on-exceeded-size": _vm.handleMaxSizeAdd,
-                          action: "/app/upload",
+                          action: "/category/photo-upload",
                         },
                       },
                       [
@@ -2021,7 +2127,7 @@ var render = function () {
                     submit: function ($event) {
                       $event.stopPropagation()
                       $event.preventDefault()
-                      return _vm.editCategory()
+                      return _vm.sendEditCategory()
                     },
                   },
                 },
@@ -2088,7 +2194,7 @@ var render = function () {
                             "max-size": 2048,
                             "on-format-error": _vm.handleFormatErrorEdit,
                             "on-exceeded-size": _vm.handleMaxSizeEdit,
-                            action: "/app/upload",
+                            action: "/category/photo-upload",
                           },
                         },
                         [

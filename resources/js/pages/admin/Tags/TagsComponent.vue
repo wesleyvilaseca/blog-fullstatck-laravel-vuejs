@@ -185,7 +185,7 @@ export default {
         defaultFunc() {
             this.myModal.hide();
             this.editModal.hide();
-            this.getAll();
+            this.$parent.getAll();
             this.data.tagName = "";
             this.isAdding = false;
         },

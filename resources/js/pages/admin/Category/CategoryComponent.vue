@@ -80,6 +80,18 @@ export default {
             if (res.status !== 200) return this.e("Error on create the tag list");
 
             this.categories = res.data.categories;
+        },
+        async delet(obj) {
+            if (confirm("Are you sure you want too delete the tag " + obj.tagName)) {
+                const res = await this.callApi("post", "/category/delete", {
+                    id: obj.id
+                });
+
+                if (res.status !== 200) return this.e("erro na operação");
+
+                this.getAll();
+                return this.s(res.data.message);
+            }
         }
     },
     mounted() {},
