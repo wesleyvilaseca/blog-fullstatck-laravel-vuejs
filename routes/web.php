@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\CategoryController;
-
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,12 +35,12 @@ Route::prefix('/category')->group(function () {
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return Inertia::render('blog/Home', ['title' => 'inertia teste']);
 });
 
-Route::get('/{any}', function () {
-    return view('welcome');
-})->where('any', '.*');
+// Route::get('/{any}', function () {
+//     return view('welcome');
+// })->where('any', '.*');
 
 // Route::get('/{vue_capture?}', function () {
 //     return view('welcome');
