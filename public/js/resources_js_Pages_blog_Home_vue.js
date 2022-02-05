@@ -113,9 +113,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm._v("\r\n    home page component " + _vm._s(_vm.title) + "\r\n"),
-  ])
+  return _c("div", [_vm._v("\r\n    Home page blog\r\n")])
 }
 var staticRenderFns = []
 render._withStripped = true

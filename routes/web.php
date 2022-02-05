@@ -16,21 +16,30 @@ use Inertia\Inertia;
 |
 */
 
-Route::prefix('/tags')->group(function () {
-    Route::get('/all', [TagController::class, 'all']);
-    Route::post('/create', [TagController::class, 'create']);
-    Route::post('/edit', [TagController::class, 'update']);
-    Route::post('/delete', [TagController::class, 'delete']);
+Route::get('admin/home', function () {
+    return Inertia::render('admin/Home/Home', []);
+});
+
+Route::prefix('admin/tags')->group(function () {
+    Route::get('/',         [TagController::class, 'index'])->name('admin.tags');
+    Route::get('/all',      [TagController::class, 'all']);
+    Route::post('/create',  [TagController::class, 'create']);
+    Route::post('/edit',    [TagController::class, 'update']);
+    Route::post('/delete',  [TagController::class, 'delete']);
 });
 
 
-Route::prefix('/category')->group(function () {
+Route::prefix('admin/category')->group(function () {
     Route::get("/all", [CategoryController::class, 'all']);
     Route::post("/create", [CategoryController::class, 'create']);
     Route::post("/edit", [CategoryController::class, 'update']);
     Route::post("/delete", [CategoryController::class, 'delete']);
     Route::post('/photo-upload', [CategoryController::class, 'upload']);
     Route::post('/photo-delete', [CategoryController::class, 'upload_delete']);
+});
+
+Route::get('/login', function () {
+    return Inertia::render('admin/Login/Login', []);
 });
 
 

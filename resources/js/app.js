@@ -3,13 +3,9 @@
 // window.Vue = require('vue').default;
 
 // import router from './router/router';
-// import ViewUI from 'view-design';
-// import 'view-design/dist/styles/iview.css';
-// import Vue from 'vue';
-// import common from './common';
 
-// Vue.mixin(common);
-// Vue.use(ViewUI);
+// import Vue from 'vue';
+
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 // Vue.component('main-app', require('./layouts/admin/MainApp.vue').default);
 
@@ -18,9 +14,21 @@
 //     router
 // });
 
-
+require('./bootstrap');
+import common from './common';
 import Vue from 'vue'
-import { createInertiaApp } from '@inertiajs/inertia-vue'
+import { createInertiaApp } from '@inertiajs/inertia-vue';
+
+import ViewUI from 'view-design';
+import 'view-design/dist/styles/iview.css';
+
+import { Link } from '@inertiajs/inertia-vue';
+
+Vue.component('Link', Link);
+
+Vue.use(ViewUI);
+
+Vue.mixin(common);
 
 createInertiaApp({
   resolve: name => import(`./Pages/${name}`),

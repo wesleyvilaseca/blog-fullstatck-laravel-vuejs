@@ -1,5 +1,6 @@
 <template>
-    <div class="container-fluid">
+  <adminLayout>
+    <template class="container-fluid" v-slot:page-content>
       <div class="row">
         <div class="col-12 col-md-3">
           <div
@@ -246,11 +247,17 @@
         </div>
       </div>
       <Page :total="100" />
-    </div>
+    </template>
+  </adminLayout>
 </template>
 
 <script>
+import adminLayout from "../../../layouts/admin/adminLayout.vue";
+
 export default {
+  components: {
+    adminLayout,
+  },
   mounted() {},
 };
 </script>

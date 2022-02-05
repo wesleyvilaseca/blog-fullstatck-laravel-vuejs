@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <div>
       <!--========== ADMIN SIDE MENU one ========-->
       <div class="_1side_menu" id="sidebar">
@@ -15,19 +15,19 @@
           <div class="_1side_menu_list">
             <ul class="_1side_menu_list_ul">
               <li>
-                <router-link to="/admin"
+                <Link href="/admin/home"
                   ><Icon type="ios-speedometer" /> DashBoard
-                </router-link>
+                </Link>
               </li>
               <li>
-                <router-link to="/admin/tags">
+                <Link href="/admin/tags">
                   <Icon type="ios-speedometer" /> Tags
-                </router-link>
+                </Link>
               </li>
               <li>
-                <router-link to="/admin/category">
+                <Link href="/admin/category">
                   <Icon type="ios-speedometer" /> Category
-                </router-link>
+                </Link>
               </li>
             </ul>
           </div>
@@ -51,7 +51,7 @@
       <!--========= HEADER ==========-->
     </div>
     <div class="content" id="content">
-      <router-view />
+      <slot name="page-content" />
     </div>
   </div>
 </template>
@@ -78,6 +78,8 @@
 
 <script>
 export default {
+  name: "adminLayout",
+  // inject: ['page'],
   data() {
     return {};
   },
@@ -101,7 +103,6 @@ export default {
   mounted() {
     let w = window.innerWidth;
     if (w <= 660) this.btnToggle();
-    
   },
 };
 </script>
