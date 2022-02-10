@@ -21,7 +21,7 @@
                          :on-success="handleSuccessAdd" 
                          :format="['jpg', 'jpeg', 'png']" 
                          :max-size="2048" :on-format-error="handleFormatErrorAdd" 
-                         :on-exceeded-size="handleMaxSizeAdd" action="/category/photo-upload">
+                         :on-exceeded-size="handleMaxSizeAdd" action="category/photo-upload">
 
                             <div style="padding: 20px 0">
                                 <Icon type="ios-cloud-upload" size="52" style="color: #3399ff" />
@@ -50,7 +50,7 @@
 </div>
 </template>
 <script>
-import "./style.css";
+import "../Styles/style.css";
 import {
     Modal
 } from "bootstrap";
@@ -76,7 +76,7 @@ export default {
             if (this.categoryAdd.iconImage.trim() == "") return this.e("Icon is required!");
 
             this.isAdding = true;
-            const res = await this.callApi("post", "/category/create", this.categoryAdd);
+            const res = await this.callApi("post", "category/create", this.categoryAdd);
 
             if (res.status !== 200) {
                 return this.e("erro na operação");
@@ -110,7 +110,7 @@ export default {
         },
         defaultFunc() {
             this.addModal.hide();
-            this.$parent.getAll();
+            this.$emit("getAll", '');
             this.categoryAdd.name = "";
             this.categoryAdd.iconImage = "";
             this.isAdding = false;
@@ -118,7 +118,7 @@ export default {
         async deleteImage() {
             let image = this.categoryAdd.iconImage;
             this.categoryAdd.iconImage = '';
-            const res = await this.callApi('post', '/category/photo-delete', {
+            const res = await this.callApi('post', 'category/photo-delete', {
                 imagename: image
             });
             this.$refs.uploads.clearFiles();

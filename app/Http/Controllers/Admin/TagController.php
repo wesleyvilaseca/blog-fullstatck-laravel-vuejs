@@ -23,7 +23,7 @@ class TagController extends Controller
     {
         $data['tags'] = $this->tag->all();
 
-        return Inertia::render('admin/Tags/Tags', $data);
+        return Inertia::render('admin/Tags/Views/Index', $data);
     }
 
     public function all(Request $request)

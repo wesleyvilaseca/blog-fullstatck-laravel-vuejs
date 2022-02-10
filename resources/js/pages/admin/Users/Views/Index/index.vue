@@ -14,7 +14,7 @@
         >
           <div class="row">
             <div class="col-md-6">
-              <p class="_title0">Tags</p>
+              <p class="_title0">Users</p>
             </div>
             <div class="col-md-6 text-right">
               <button class="btn btn-sm btn-success" @click.prevent="newTag()">
@@ -29,7 +29,7 @@
                 <!-- TABLE TITLE -->
                 <tr>
                   <th>id</th>
-                  <th>Tag name</th>
+                  <th>User Name</th>
                   <!-- <th>Category</th> -->
                   <th>Action</th>
                 </tr>
@@ -159,7 +159,7 @@
 
 <script>
 import { Modal } from "bootstrap";
-import adminLayout from "../../../layouts/admin/adminLayout.vue";
+import adminLayout from "@/layouts/admin/adminLayout.vue";
 
 export default {
   components: {

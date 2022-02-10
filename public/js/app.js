@@ -169,6 +169,18 @@ module.exports = deepmerge_1;
 
 /***/ }),
 
+/***/ "./node_modules/@inertiajs/progress/dist/index.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@inertiajs/progress/dist/index.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+var n,e=(n=__webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogress.js"))&&"object"==typeof n&&"default"in n?n.default:n,t=null;function r(n){document.addEventListener("inertia:start",o.bind(null,n)),document.addEventListener("inertia:progress",i),document.addEventListener("inertia:finish",s)}function o(n){t=setTimeout(function(){return e.start()},n)}function i(n){e.isStarted()&&n.detail.progress.percentage&&e.set(Math.max(e.status,n.detail.progress.percentage/100*.9))}function s(n){clearTimeout(t),e.isStarted()&&(n.detail.visit.completed?e.done():n.detail.visit.interrupted?e.set(0):n.detail.visit.cancelled&&(e.done(),e.remove()))}exports.InertiaProgress={init:function(n){var t=void 0===n?{}:n,o=t.delay,i=t.color,s=void 0===i?"#29d":i,a=t.includeCSS,p=void 0===a||a,d=t.showSpinner,l=void 0!==d&&d;r(void 0===o?250:o),e.configure({showSpinner:l}),p&&function(n){var e=document.createElement("style");e.type="text/css",e.textContent="\n    #nprogress {\n      pointer-events: none;\n    }\n\n    #nprogress .bar {\n      background: "+n+";\n\n      position: fixed;\n      z-index: 1031;\n      top: 0;\n      left: 0;\n\n      width: 100%;\n      height: 2px;\n    }\n\n    #nprogress .peg {\n      display: block;\n      position: absolute;\n      right: 0px;\n      width: 100px;\n      height: 100%;\n      box-shadow: 0 0 10px "+n+", 0 0 5px "+n+";\n      opacity: 1.0;\n\n      -webkit-transform: rotate(3deg) translate(0px, -4px);\n          -ms-transform: rotate(3deg) translate(0px, -4px);\n              transform: rotate(3deg) translate(0px, -4px);\n    }\n\n    #nprogress .spinner {\n      display: block;\n      position: fixed;\n      z-index: 1031;\n      top: 15px;\n      right: 15px;\n    }\n\n    #nprogress .spinner-icon {\n      width: 18px;\n      height: 18px;\n      box-sizing: border-box;\n\n      border: solid 2px transparent;\n      border-top-color: "+n+";\n      border-left-color: "+n+";\n      border-radius: 50%;\n\n      -webkit-animation: nprogress-spinner 400ms linear infinite;\n              animation: nprogress-spinner 400ms linear infinite;\n    }\n\n    .nprogress-custom-parent {\n      overflow: hidden;\n      position: relative;\n    }\n\n    .nprogress-custom-parent #nprogress .spinner,\n    .nprogress-custom-parent #nprogress .bar {\n      position: absolute;\n    }\n\n    @-webkit-keyframes nprogress-spinner {\n      0%   { -webkit-transform: rotate(0deg); }\n      100% { -webkit-transform: rotate(360deg); }\n    }\n    @keyframes nprogress-spinner {\n      0%   { transform: rotate(0deg); }\n      100% { transform: rotate(360deg); }\n    }\n  ",document.head.appendChild(e)}(s)}};
+//# sourceMappingURL=index.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/@popperjs/core/lib/createPopper.js":
 /*!*********************************************************!*\
   !*** ./node_modules/@popperjs/core/lib/createPopper.js ***!
@@ -5429,11 +5441,12 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common */ "./resources/js/common.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
 /* harmony import */ var view_design__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! view-design */ "./node_modules/view-design/dist/iview.js");
 /* harmony import */ var view_design__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(view_design__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var view_design_dist_styles_iview_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! view-design/dist/styles/iview.css */ "./node_modules/view-design/dist/styles/iview.css");
+/* harmony import */ var _inertiajs_progress__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @inertiajs/progress */ "./node_modules/@inertiajs/progress/dist/index.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
@@ -5443,9 +5456,11 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_5__["default"].component('Link', _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_2__.Link);
-vue__WEBPACK_IMPORTED_MODULE_5__["default"].use((view_design__WEBPACK_IMPORTED_MODULE_3___default()));
-vue__WEBPACK_IMPORTED_MODULE_5__["default"].mixin(_common__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+_inertiajs_progress__WEBPACK_IMPORTED_MODULE_5__.InertiaProgress.init();
+vue__WEBPACK_IMPORTED_MODULE_6__["default"].component('Link', _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_2__.Link);
+vue__WEBPACK_IMPORTED_MODULE_6__["default"].use((view_design__WEBPACK_IMPORTED_MODULE_3___default()));
+vue__WEBPACK_IMPORTED_MODULE_6__["default"].mixin(_common__WEBPACK_IMPORTED_MODULE_0__["default"]);
 (0,_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_2__.createInertiaApp)({
   resolve: function resolve(name) {
     return __webpack_require__("./resources/js/Pages lazy recursive ^\\.\\/.*$")("./".concat(name));
@@ -5455,8 +5470,8 @@ vue__WEBPACK_IMPORTED_MODULE_5__["default"].mixin(_common__WEBPACK_IMPORTED_MODU
         App = _ref.App,
         props = _ref.props,
         plugin = _ref.plugin;
-    vue__WEBPACK_IMPORTED_MODULE_5__["default"].use(plugin);
-    new vue__WEBPACK_IMPORTED_MODULE_5__["default"]({
+    vue__WEBPACK_IMPORTED_MODULE_6__["default"].use(plugin);
+    new vue__WEBPACK_IMPORTED_MODULE_6__["default"]({
       store: _store__WEBPACK_IMPORTED_MODULE_1__.store,
       render: function render(h) {
         return h(App, props);
@@ -5568,6 +5583,31 @@ __webpack_require__.r(__webpack_exports__);
         title: title,
         desc: desc
       });
+    },
+    getUrlVars: function getUrlVars() {
+      var vars = {};
+      var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+        vars[key] = value;
+      });
+      return vars;
+    },
+    string_to_slug: function string_to_slug(str) {
+      str = str.replace(/^\s+|\s+$/g, ''); // trim
+
+      str = str.toLowerCase(); // remove accents, swap ñ for n, etc
+
+      var from = "àáãäâèéëêìíïîòóöôùúüûñç·/_,:;";
+      var to = "aaaaaeeeeiiiioooouuuunc------";
+
+      for (var i = 0, l = from.length; i < l; i++) {
+        str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+      }
+
+      str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+      .replace(/\s+/g, '-') // collapse whitespace and replace by -
+      .replace(/-+/g, '-'); // collapse dashes
+
+      return str;
     }
   }
 });
@@ -31683,6 +31723,492 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./node_modules/nprogress/nprogress.js":
+/*!*********************************************!*\
+  !*** ./node_modules/nprogress/nprogress.js ***!
+  \*********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* NProgress, (c) 2013, 2014 Rico Sta. Cruz - http://ricostacruz.com/nprogress
+ * @license MIT */
+
+;(function(root, factory) {
+
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+		__WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else {}
+
+})(this, function() {
+  var NProgress = {};
+
+  NProgress.version = '0.2.0';
+
+  var Settings = NProgress.settings = {
+    minimum: 0.08,
+    easing: 'ease',
+    positionUsing: '',
+    speed: 200,
+    trickle: true,
+    trickleRate: 0.02,
+    trickleSpeed: 800,
+    showSpinner: true,
+    barSelector: '[role="bar"]',
+    spinnerSelector: '[role="spinner"]',
+    parent: 'body',
+    template: '<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
+  };
+
+  /**
+   * Updates configuration.
+   *
+   *     NProgress.configure({
+   *       minimum: 0.1
+   *     });
+   */
+  NProgress.configure = function(options) {
+    var key, value;
+    for (key in options) {
+      value = options[key];
+      if (value !== undefined && options.hasOwnProperty(key)) Settings[key] = value;
+    }
+
+    return this;
+  };
+
+  /**
+   * Last number.
+   */
+
+  NProgress.status = null;
+
+  /**
+   * Sets the progress bar status, where `n` is a number from `0.0` to `1.0`.
+   *
+   *     NProgress.set(0.4);
+   *     NProgress.set(1.0);
+   */
+
+  NProgress.set = function(n) {
+    var started = NProgress.isStarted();
+
+    n = clamp(n, Settings.minimum, 1);
+    NProgress.status = (n === 1 ? null : n);
+
+    var progress = NProgress.render(!started),
+        bar      = progress.querySelector(Settings.barSelector),
+        speed    = Settings.speed,
+        ease     = Settings.easing;
+
+    progress.offsetWidth; /* Repaint */
+
+    queue(function(next) {
+      // Set positionUsing if it hasn't already been set
+      if (Settings.positionUsing === '') Settings.positionUsing = NProgress.getPositioningCSS();
+
+      // Add transition
+      css(bar, barPositionCSS(n, speed, ease));
+
+      if (n === 1) {
+        // Fade out
+        css(progress, { 
+          transition: 'none', 
+          opacity: 1 
+        });
+        progress.offsetWidth; /* Repaint */
+
+        setTimeout(function() {
+          css(progress, { 
+            transition: 'all ' + speed + 'ms linear', 
+            opacity: 0 
+          });
+          setTimeout(function() {
+            NProgress.remove();
+            next();
+          }, speed);
+        }, speed);
+      } else {
+        setTimeout(next, speed);
+      }
+    });
+
+    return this;
+  };
+
+  NProgress.isStarted = function() {
+    return typeof NProgress.status === 'number';
+  };
+
+  /**
+   * Shows the progress bar.
+   * This is the same as setting the status to 0%, except that it doesn't go backwards.
+   *
+   *     NProgress.start();
+   *
+   */
+  NProgress.start = function() {
+    if (!NProgress.status) NProgress.set(0);
+
+    var work = function() {
+      setTimeout(function() {
+        if (!NProgress.status) return;
+        NProgress.trickle();
+        work();
+      }, Settings.trickleSpeed);
+    };
+
+    if (Settings.trickle) work();
+
+    return this;
+  };
+
+  /**
+   * Hides the progress bar.
+   * This is the *sort of* the same as setting the status to 100%, with the
+   * difference being `done()` makes some placebo effect of some realistic motion.
+   *
+   *     NProgress.done();
+   *
+   * If `true` is passed, it will show the progress bar even if its hidden.
+   *
+   *     NProgress.done(true);
+   */
+
+  NProgress.done = function(force) {
+    if (!force && !NProgress.status) return this;
+
+    return NProgress.inc(0.3 + 0.5 * Math.random()).set(1);
+  };
+
+  /**
+   * Increments by a random amount.
+   */
+
+  NProgress.inc = function(amount) {
+    var n = NProgress.status;
+
+    if (!n) {
+      return NProgress.start();
+    } else {
+      if (typeof amount !== 'number') {
+        amount = (1 - n) * clamp(Math.random() * n, 0.1, 0.95);
+      }
+
+      n = clamp(n + amount, 0, 0.994);
+      return NProgress.set(n);
+    }
+  };
+
+  NProgress.trickle = function() {
+    return NProgress.inc(Math.random() * Settings.trickleRate);
+  };
+
+  /**
+   * Waits for all supplied jQuery promises and
+   * increases the progress as the promises resolve.
+   *
+   * @param $promise jQUery Promise
+   */
+  (function() {
+    var initial = 0, current = 0;
+
+    NProgress.promise = function($promise) {
+      if (!$promise || $promise.state() === "resolved") {
+        return this;
+      }
+
+      if (current === 0) {
+        NProgress.start();
+      }
+
+      initial++;
+      current++;
+
+      $promise.always(function() {
+        current--;
+        if (current === 0) {
+            initial = 0;
+            NProgress.done();
+        } else {
+            NProgress.set((initial - current) / initial);
+        }
+      });
+
+      return this;
+    };
+
+  })();
+
+  /**
+   * (Internal) renders the progress bar markup based on the `template`
+   * setting.
+   */
+
+  NProgress.render = function(fromStart) {
+    if (NProgress.isRendered()) return document.getElementById('nprogress');
+
+    addClass(document.documentElement, 'nprogress-busy');
+    
+    var progress = document.createElement('div');
+    progress.id = 'nprogress';
+    progress.innerHTML = Settings.template;
+
+    var bar      = progress.querySelector(Settings.barSelector),
+        perc     = fromStart ? '-100' : toBarPerc(NProgress.status || 0),
+        parent   = document.querySelector(Settings.parent),
+        spinner;
+    
+    css(bar, {
+      transition: 'all 0 linear',
+      transform: 'translate3d(' + perc + '%,0,0)'
+    });
+
+    if (!Settings.showSpinner) {
+      spinner = progress.querySelector(Settings.spinnerSelector);
+      spinner && removeElement(spinner);
+    }
+
+    if (parent != document.body) {
+      addClass(parent, 'nprogress-custom-parent');
+    }
+
+    parent.appendChild(progress);
+    return progress;
+  };
+
+  /**
+   * Removes the element. Opposite of render().
+   */
+
+  NProgress.remove = function() {
+    removeClass(document.documentElement, 'nprogress-busy');
+    removeClass(document.querySelector(Settings.parent), 'nprogress-custom-parent');
+    var progress = document.getElementById('nprogress');
+    progress && removeElement(progress);
+  };
+
+  /**
+   * Checks if the progress bar is rendered.
+   */
+
+  NProgress.isRendered = function() {
+    return !!document.getElementById('nprogress');
+  };
+
+  /**
+   * Determine which positioning CSS rule to use.
+   */
+
+  NProgress.getPositioningCSS = function() {
+    // Sniff on document.body.style
+    var bodyStyle = document.body.style;
+
+    // Sniff prefixes
+    var vendorPrefix = ('WebkitTransform' in bodyStyle) ? 'Webkit' :
+                       ('MozTransform' in bodyStyle) ? 'Moz' :
+                       ('msTransform' in bodyStyle) ? 'ms' :
+                       ('OTransform' in bodyStyle) ? 'O' : '';
+
+    if (vendorPrefix + 'Perspective' in bodyStyle) {
+      // Modern browsers with 3D support, e.g. Webkit, IE10
+      return 'translate3d';
+    } else if (vendorPrefix + 'Transform' in bodyStyle) {
+      // Browsers without 3D support, e.g. IE9
+      return 'translate';
+    } else {
+      // Browsers without translate() support, e.g. IE7-8
+      return 'margin';
+    }
+  };
+
+  /**
+   * Helpers
+   */
+
+  function clamp(n, min, max) {
+    if (n < min) return min;
+    if (n > max) return max;
+    return n;
+  }
+
+  /**
+   * (Internal) converts a percentage (`0..1`) to a bar translateX
+   * percentage (`-100%..0%`).
+   */
+
+  function toBarPerc(n) {
+    return (-1 + n) * 100;
+  }
+
+
+  /**
+   * (Internal) returns the correct CSS for changing the bar's
+   * position given an n percentage, and speed and ease from Settings
+   */
+
+  function barPositionCSS(n, speed, ease) {
+    var barCSS;
+
+    if (Settings.positionUsing === 'translate3d') {
+      barCSS = { transform: 'translate3d('+toBarPerc(n)+'%,0,0)' };
+    } else if (Settings.positionUsing === 'translate') {
+      barCSS = { transform: 'translate('+toBarPerc(n)+'%,0)' };
+    } else {
+      barCSS = { 'margin-left': toBarPerc(n)+'%' };
+    }
+
+    barCSS.transition = 'all '+speed+'ms '+ease;
+
+    return barCSS;
+  }
+
+  /**
+   * (Internal) Queues a function to be executed.
+   */
+
+  var queue = (function() {
+    var pending = [];
+    
+    function next() {
+      var fn = pending.shift();
+      if (fn) {
+        fn(next);
+      }
+    }
+
+    return function(fn) {
+      pending.push(fn);
+      if (pending.length == 1) next();
+    };
+  })();
+
+  /**
+   * (Internal) Applies css properties to an element, similar to the jQuery 
+   * css method.
+   *
+   * While this helper does assist with vendor prefixed property names, it 
+   * does not perform any manipulation of values prior to setting styles.
+   */
+
+  var css = (function() {
+    var cssPrefixes = [ 'Webkit', 'O', 'Moz', 'ms' ],
+        cssProps    = {};
+
+    function camelCase(string) {
+      return string.replace(/^-ms-/, 'ms-').replace(/-([\da-z])/gi, function(match, letter) {
+        return letter.toUpperCase();
+      });
+    }
+
+    function getVendorProp(name) {
+      var style = document.body.style;
+      if (name in style) return name;
+
+      var i = cssPrefixes.length,
+          capName = name.charAt(0).toUpperCase() + name.slice(1),
+          vendorName;
+      while (i--) {
+        vendorName = cssPrefixes[i] + capName;
+        if (vendorName in style) return vendorName;
+      }
+
+      return name;
+    }
+
+    function getStyleProp(name) {
+      name = camelCase(name);
+      return cssProps[name] || (cssProps[name] = getVendorProp(name));
+    }
+
+    function applyCss(element, prop, value) {
+      prop = getStyleProp(prop);
+      element.style[prop] = value;
+    }
+
+    return function(element, properties) {
+      var args = arguments,
+          prop, 
+          value;
+
+      if (args.length == 2) {
+        for (prop in properties) {
+          value = properties[prop];
+          if (value !== undefined && properties.hasOwnProperty(prop)) applyCss(element, prop, value);
+        }
+      } else {
+        applyCss(element, args[1], args[2]);
+      }
+    }
+  })();
+
+  /**
+   * (Internal) Determines if an element or space separated list of class names contains a class name.
+   */
+
+  function hasClass(element, name) {
+    var list = typeof element == 'string' ? element : classList(element);
+    return list.indexOf(' ' + name + ' ') >= 0;
+  }
+
+  /**
+   * (Internal) Adds a class to an element.
+   */
+
+  function addClass(element, name) {
+    var oldList = classList(element),
+        newList = oldList + name;
+
+    if (hasClass(oldList, name)) return; 
+
+    // Trim the opening space.
+    element.className = newList.substring(1);
+  }
+
+  /**
+   * (Internal) Removes a class from an element.
+   */
+
+  function removeClass(element, name) {
+    var oldList = classList(element),
+        newList;
+
+    if (!hasClass(element, name)) return;
+
+    // Replace the class name.
+    newList = oldList.replace(' ' + name + ' ', ' ');
+
+    // Trim the opening and closing spaces.
+    element.className = newList.substring(1, newList.length - 1);
+  }
+
+  /**
+   * (Internal) Gets a space separated list of the class names on the element. 
+   * The list is wrapped with a single space on each end to facilitate finding 
+   * matches within the list.
+   */
+
+  function classList(element) {
+    return (' ' + (element.className || '') + ' ').replace(/\s+/gi, ' ');
+  }
+
+  /**
+   * (Internal) Removes an element from the DOM.
+   */
+
+  function removeElement(element) {
+    element && element.parentNode && element.parentNode.removeChild(element);
+  }
+
+  return NProgress;
+});
+
 
 
 /***/ }),
@@ -92426,57 +92952,113 @@ var index = {
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
-	"./admin/Category/CategoryComponent": [
-		"./resources/js/Pages/admin/Category/CategoryComponent.vue",
-		"resources_js_Pages_admin_Category_CategoryComponent_vue"
+	"./admin/Category/Components/ModalAddCategoryComponent": [
+		"./resources/js/Pages/admin/Category/Components/ModalAddCategoryComponent.vue",
+		"resources_js_Pages_admin_Category_Components_ModalAddCategoryComponent_vue"
 	],
-	"./admin/Category/CategoryComponent.vue": [
-		"./resources/js/Pages/admin/Category/CategoryComponent.vue",
-		"resources_js_Pages_admin_Category_CategoryComponent_vue"
+	"./admin/Category/Components/ModalAddCategoryComponent.vue": [
+		"./resources/js/Pages/admin/Category/Components/ModalAddCategoryComponent.vue",
+		"resources_js_Pages_admin_Category_Components_ModalAddCategoryComponent_vue"
 	],
-	"./admin/Category/ModalAddCategoryComponent": [
-		"./resources/js/Pages/admin/Category/ModalAddCategoryComponent.vue",
-		"resources_js_Pages_admin_Category_ModalAddCategoryComponent_vue"
+	"./admin/Category/Components/ModalEditCategoryComponent": [
+		"./resources/js/Pages/admin/Category/Components/ModalEditCategoryComponent.vue",
+		"resources_js_Pages_admin_Category_Components_ModalEditCategoryComponent_vue"
 	],
-	"./admin/Category/ModalAddCategoryComponent.vue": [
-		"./resources/js/Pages/admin/Category/ModalAddCategoryComponent.vue",
-		"resources_js_Pages_admin_Category_ModalAddCategoryComponent_vue"
+	"./admin/Category/Components/ModalEditCategoryComponent.vue": [
+		"./resources/js/Pages/admin/Category/Components/ModalEditCategoryComponent.vue",
+		"resources_js_Pages_admin_Category_Components_ModalEditCategoryComponent_vue"
 	],
-	"./admin/Category/ModalEditCategoryComponent": [
-		"./resources/js/Pages/admin/Category/ModalEditCategoryComponent.vue",
-		"resources_js_Pages_admin_Category_ModalEditCategoryComponent_vue"
+	"./admin/Category/Styles/style.css": [
+		"./resources/js/Pages/admin/Category/Styles/style.css",
+		"resources_js_Pages_admin_Category_Styles_style_css"
 	],
-	"./admin/Category/ModalEditCategoryComponent.vue": [
-		"./resources/js/Pages/admin/Category/ModalEditCategoryComponent.vue",
-		"resources_js_Pages_admin_Category_ModalEditCategoryComponent_vue"
+	"./admin/Category/Views/Index": [
+		"./resources/js/Pages/admin/Category/Views/Index/index.vue",
+		"resources_js_Pages_admin_Category_Views_Index_index_vue"
 	],
-	"./admin/Category/style.css": [
-		"./resources/js/Pages/admin/Category/style.css",
-		"resources_js_Pages_admin_Category_style_css"
+	"./admin/Category/Views/Index/": [
+		"./resources/js/Pages/admin/Category/Views/Index/index.vue",
+		"resources_js_Pages_admin_Category_Views_Index_index_vue"
 	],
-	"./admin/Home/Home": [
-		"./resources/js/Pages/admin/Home/Home.vue",
-		"resources_js_Pages_admin_Home_Home_vue"
+	"./admin/Category/Views/Index/index": [
+		"./resources/js/Pages/admin/Category/Views/Index/index.vue",
+		"resources_js_Pages_admin_Category_Views_Index_index_vue"
 	],
-	"./admin/Home/Home.vue": [
-		"./resources/js/Pages/admin/Home/Home.vue",
-		"resources_js_Pages_admin_Home_Home_vue"
+	"./admin/Category/Views/Index/index.vue": [
+		"./resources/js/Pages/admin/Category/Views/Index/index.vue",
+		"resources_js_Pages_admin_Category_Views_Index_index_vue"
 	],
-	"./admin/Login/Login": [
-		"./resources/js/Pages/admin/Login/Login.vue",
-		"resources_js_Pages_admin_Login_Login_vue"
+	"./admin/Home/Views/Index": [
+		"./resources/js/Pages/admin/Home/Views/Index/index.vue",
+		"resources_js_Pages_admin_Home_Views_Index_index_vue"
 	],
-	"./admin/Login/Login.vue": [
-		"./resources/js/Pages/admin/Login/Login.vue",
-		"resources_js_Pages_admin_Login_Login_vue"
+	"./admin/Home/Views/Index/": [
+		"./resources/js/Pages/admin/Home/Views/Index/index.vue",
+		"resources_js_Pages_admin_Home_Views_Index_index_vue"
 	],
-	"./admin/Tags/Tags": [
-		"./resources/js/Pages/admin/Tags/Tags.vue",
-		"resources_js_Pages_admin_Tags_Tags_vue"
+	"./admin/Home/Views/Index/index": [
+		"./resources/js/Pages/admin/Home/Views/Index/index.vue",
+		"resources_js_Pages_admin_Home_Views_Index_index_vue"
 	],
-	"./admin/Tags/Tags.vue": [
-		"./resources/js/Pages/admin/Tags/Tags.vue",
-		"resources_js_Pages_admin_Tags_Tags_vue"
+	"./admin/Home/Views/Index/index.vue": [
+		"./resources/js/Pages/admin/Home/Views/Index/index.vue",
+		"resources_js_Pages_admin_Home_Views_Index_index_vue"
+	],
+	"./admin/Login/Views/Index": [
+		"./resources/js/Pages/admin/Login/Views/Index/index.vue",
+		"resources_js_Pages_admin_Login_Views_Index_index_vue"
+	],
+	"./admin/Login/Views/Index/": [
+		"./resources/js/Pages/admin/Login/Views/Index/index.vue",
+		"resources_js_Pages_admin_Login_Views_Index_index_vue"
+	],
+	"./admin/Login/Views/Index/index": [
+		"./resources/js/Pages/admin/Login/Views/Index/index.vue",
+		"resources_js_Pages_admin_Login_Views_Index_index_vue"
+	],
+	"./admin/Login/Views/Index/index.vue": [
+		"./resources/js/Pages/admin/Login/Views/Index/index.vue",
+		"resources_js_Pages_admin_Login_Views_Index_index_vue"
+	],
+	"./admin/Tags/Views/Index": [
+		"./resources/js/Pages/admin/Tags/Views/Index/index.vue",
+		"resources_js_Pages_admin_Tags_Views_Index_index_vue"
+	],
+	"./admin/Tags/Views/Index/": [
+		"./resources/js/Pages/admin/Tags/Views/Index/index.vue",
+		"resources_js_Pages_admin_Tags_Views_Index_index_vue"
+	],
+	"./admin/Tags/Views/Index/index": [
+		"./resources/js/Pages/admin/Tags/Views/Index/index.vue",
+		"resources_js_Pages_admin_Tags_Views_Index_index_vue"
+	],
+	"./admin/Tags/Views/Index/index.vue": [
+		"./resources/js/Pages/admin/Tags/Views/Index/index.vue",
+		"resources_js_Pages_admin_Tags_Views_Index_index_vue"
+	],
+	"./admin/Users/Views/Create/Create": [
+		"./resources/js/Pages/admin/Users/Views/Create/Create.vue",
+		"resources_js_Pages_admin_Users_Views_Create_Create_vue"
+	],
+	"./admin/Users/Views/Create/Create.vue": [
+		"./resources/js/Pages/admin/Users/Views/Create/Create.vue",
+		"resources_js_Pages_admin_Users_Views_Create_Create_vue"
+	],
+	"./admin/Users/Views/Index": [
+		"./resources/js/Pages/admin/Users/Views/Index/index.vue",
+		"resources_js_Pages_admin_Users_Views_Index_index_vue"
+	],
+	"./admin/Users/Views/Index/": [
+		"./resources/js/Pages/admin/Users/Views/Index/index.vue",
+		"resources_js_Pages_admin_Users_Views_Index_index_vue"
+	],
+	"./admin/Users/Views/Index/index": [
+		"./resources/js/Pages/admin/Users/Views/Index/index.vue",
+		"resources_js_Pages_admin_Users_Views_Index_index_vue"
+	],
+	"./admin/Users/Views/Index/index.vue": [
+		"./resources/js/Pages/admin/Users/Views/Index/index.vue",
+		"resources_js_Pages_admin_Users_Views_Index_index_vue"
 	],
 	"./blog/Home": [
 		"./resources/js/Pages/blog/Home.vue",
@@ -92625,7 +93207,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_Pages_admin_Category_CategoryComponent_vue":1,"resources_js_Pages_admin_Category_ModalAddCategoryComponent_vue":1,"resources_js_Pages_admin_Category_ModalEditCategoryComponent_vue":1,"resources_js_Pages_admin_Category_style_css":1,"resources_js_Pages_admin_Home_Home_vue":1,"resources_js_Pages_admin_Login_Login_vue":1,"resources_js_Pages_admin_Tags_Tags_vue":1,"resources_js_Pages_blog_Home_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_Pages_admin_Category_Components_ModalAddCategoryComponent_vue":1,"resources_js_Pages_admin_Category_Components_ModalEditCategoryComponent_vue":1,"resources_js_Pages_admin_Category_Styles_style_css":1,"resources_js_Pages_admin_Category_Views_Index_index_vue":1,"resources_js_Pages_admin_Home_Views_Index_index_vue":1,"resources_js_Pages_admin_Login_Views_Index_index_vue":1,"resources_js_Pages_admin_Tags_Views_Index_index_vue":1,"resources_js_Pages_admin_Users_Views_Create_Create_vue":1,"resources_js_Pages_admin_Users_Views_Index_index_vue":1,"resources_js_Pages_blog_Home_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

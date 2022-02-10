@@ -1,5 +1,6 @@
 <template>
-<div class="container-fluid">
+<adminLayout>
+<template class="container-fluid" v-slot:page-content>
     <!--~~~~~~~ TABLE ONE ~~~~~~~~~-->
     <div class="
         _1adminOverveiw_table_recent
@@ -54,36 +55,42 @@
         <div v-else class="text-center">Não há registros</div>
     </div>
 
-    <modal-add-category-component ref="modalAdd" />
-    <modal-edit-category-component ref="modalEdit" />
-</div>
+    <modal-add-category-component ref="modalAdd" @getAll="getAll"/>
+    <modal-edit-category-component ref="modalEdit" @getAll="getAll" />
+</template>
+</adminLayout>
 </template>
 
 <script>
-import "./style.css";
-import ModalAddCategoryComponent from "./ModalAddCategoryComponent.vue";
-import ModalEditCategoryComponent from "./ModalEditCategoryComponent.vue";
+import ModalAddCategoryComponent from "../../Components/ModalAddCategoryComponent.vue";
+import ModalEditCategoryComponent from "../../Components/ModalEditCategoryComponent.vue";
+import adminLayout from "@/layouts/admin/adminLayout.vue";
+
+import "../../Styles/style.css";
 export default {
     components: {
         'modal-add-category-component': ModalAddCategoryComponent,
-        'modal-edit-category-component': ModalEditCategoryComponent
+        'modal-edit-category-component': ModalEditCategoryComponent,
+        adminLayout
+    },
+    props: {
+        categories: Array
     },
     data() {
         return {
-            categories: [],
             token: "",
         };
     },
     methods: {
         async getAll() {
-            const res = await this.callApi("get", "/category/all");
+            const res = await this.callApi("get", "category/all");
             if (res.status !== 200) return this.e("Error on create the tag list");
 
             this.categories = res.data.categories;
         },
         async delet(obj) {
             if (confirm("Are you sure you want too delete the tag " + obj.tagName)) {
-                const res = await this.callApi("post", "/category/delete", {
+                const res = await this.callApi("post", "category/delete", {
                     id: obj.id
                 });
 
@@ -96,7 +103,6 @@ export default {
     },
     mounted() {},
     created() {
-        this.getAll();
     },
 };
 </script>

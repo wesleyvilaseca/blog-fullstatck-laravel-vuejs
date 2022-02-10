@@ -26,6 +26,7 @@
     "dependencies": {
         "@inertiajs/inertia": "^0.11.0",
         "@inertiajs/inertia-vue": "^0.8.0",
+        "@inertiajs/progress": "^0.2.7",
         "view-design": "^4.7.0",
         "vue-router": "^3.5.3",
         "vuex": "^3.6.2"

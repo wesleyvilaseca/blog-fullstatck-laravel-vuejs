@@ -20,3 +20,11 @@ mix.styles([
     'public/css/grid.min.css',
     'public/css/custom.css',
 ], 'public/css/all.css');
+
+mix.webpackConfig({
+    resolve: {
+        alias: {
+            '@': __dirname + '/resources/js',
+        }
+    }
+});

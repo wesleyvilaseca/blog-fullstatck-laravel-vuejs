@@ -8,7 +8,10 @@ import ViewUI from 'view-design';
 import 'view-design/dist/styles/iview.css';
 
 import { Link } from '@inertiajs/inertia-vue';
+import { InertiaProgress } from '@inertiajs/progress'
 
+
+InertiaProgress.init()
 Vue.component('Link', Link);
 
 Vue.use(ViewUI);

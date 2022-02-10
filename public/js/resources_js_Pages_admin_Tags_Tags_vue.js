@@ -344,23 +344,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "adminLayout",
-  // inject: ['page'],
   data: function data() {
-    return {};
+    return {
+      url: "",
+      menu: [{
+        Link: '/admin/home',
+        Title: 'Dashboard',
+        Icon: 'ios-speedometer'
+      }, {
+        Link: '/admin/tags',
+        Title: 'Tags',
+        Icon: 'ios-speedometer'
+      }, {
+        Link: '/admin/category',
+        Title: 'Category',
+        Icon: 'ios-speedometer'
+      }, {
+        Link: '/admin/users',
+        Title: 'Users',
+        Icon: 'ios-speedometer'
+      }]
+    };
   },
   methods: {
+    getURL: function getURL() {
+      this.url = window.location.pathname;
+    },
     btnToggle: function btnToggle() {
       var sidebar = document.getElementById("sidebar");
       var header = document.getElementById("header");
@@ -376,6 +387,9 @@ __webpack_require__.r(__webpack_exports__);
         content.classList.add("toggled");
       }
     }
+  },
+  created: function created() {
+    this.getURL();
   },
   mounted: function mounted() {
     var w = window.innerWidth;
@@ -401,7 +415,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n._1side_menu.toggled[data-v-2612c485] {\r\n  left: -248px;\n}\n.header.toggled[data-v-2612c485] {\r\n  padding-left: 0px;\n}\n.content.toggled[data-v-2612c485] {\r\n  margin-left: 0px;\n}\n@media screen and (max-width: 768px) {\n.content[data-v-2612c485] {\r\n    margin-left: 0px;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n._1side_menu.toggled[data-v-2612c485] {\r\n    left: -248px;\n}\n.header.toggled[data-v-2612c485] {\r\n    padding-left: 0px;\n}\n.content.toggled[data-v-2612c485] {\r\n    margin-left: 0px;\n}\n@media screen and (max-width: 768px) {\n.content[data-v-2612c485] {\r\n        margin-left: 0px;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -967,55 +981,38 @@ var render = function () {
           _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "_1side_menu_list" }, [
-            _c("ul", { staticClass: "_1side_menu_list_ul" }, [
-              _c(
-                "li",
-                [
-                  _c(
-                    "Link",
-                    { attrs: { href: "/admin/home" } },
-                    [
-                      _c("Icon", { attrs: { type: "ios-speedometer" } }),
-                      _vm._v(" DashBoard\n              "),
-                    ],
-                    1
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "Link",
-                    { attrs: { href: "/admin/tags" } },
-                    [
-                      _c("Icon", { attrs: { type: "ios-speedometer" } }),
-                      _vm._v(" Tags\n              "),
-                    ],
-                    1
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "Link",
-                    { attrs: { href: "/admin/category" } },
-                    [
-                      _c("Icon", { attrs: { type: "ios-speedometer" } }),
-                      _vm._v(" Category\n              "),
-                    ],
-                    1
-                  ),
-                ],
-                1
-              ),
-            ]),
+            _c(
+              "ul",
+              { staticClass: "_1side_menu_list_ul" },
+              _vm._l(_vm.menu, function (item, index) {
+                return _c(
+                  "li",
+                  { key: index },
+                  [
+                    _c(
+                      "Link",
+                      {
+                        class: {
+                          "router-link-exact-active": item.Link === _vm.url,
+                        },
+                        attrs: { href: item.Link },
+                      },
+                      [
+                        _c("Icon", { attrs: { type: item.Icon } }),
+                        _vm._v(
+                          " " +
+                            _vm._s(item.Title) +
+                            "\r\n                            "
+                        ),
+                      ],
+                      1
+                    ),
+                  ],
+                  1
+                )
+              }),
+              0
+            ),
           ]),
         ]),
       ]),

@@ -15,23 +15,13 @@
                         </div>
 
                         <div class="mb-3">
-                            <Upload v-show="!categoryEdit.iconImage" type="drag" 
-                            :headers="{ 'X-CSRF-TOKEN': token, 'X-Requested-With' : 'XMLHttpRequest' }" 
-                            ref="uploads" :multiple="false" :on-success="handleSuccessEdit" 
-                            :format="['jpg', 'jpeg', 'png']" :max-size="2048" 
-                            :on-format-error="handleFormatErrorEdit" :on-exceeded-size="handleMaxSizeEdit" action="/category/photo-upload">
+                            <Upload v-show="!categoryEdit.iconImage" type="drag" :headers="{ 'X-CSRF-TOKEN': token, 'X-Requested-With' : 'XMLHttpRequest' }" ref="uploads" :multiple="false" :on-success="handleSuccessEdit" :format="['jpg', 'jpeg', 'png']" :max-size="2048" :on-format-error="handleFormatErrorEdit" :on-exceeded-size="handleMaxSizeEdit" action="category/photo-upload">
 
                                 <div style="padding: 20px 0">
                                     <Icon type="ios-cloud-upload" size="52" style="color: #3399ff" />
                                     <p>Click or drag files here to upload</p>
                                 </div>
                             </Upload>
-                            <!-- <div class="demo-upload-list" v-if="categoryAdd.iconImage">
-                                <img :src="`/uploads/${categoryAdd.iconImage}`" alt="">
-                                <div class="demo-upload-list-cover">
-                                    <Icon type="ios-trash-outline" @click.prevent="deleteImage()"></Icon>
-                                </div>
-                            </div> -->
                             <div class="demo-upload-list" v-if="categoryEdit.iconImage">
                                 <img :src="`/uploads/${categoryEdit.iconImage}`" alt="">
                                 <div class="demo-upload-list-cover">
@@ -49,20 +39,6 @@
                         </div>
                     </form>
                 </div>
-                <!-- <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="tagName" class="form-label">Tag name</label>
-                        <input type="text" class="form-control" id="tagName" v-model="editData.tagName" />
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">
-                        fechar
-                    </button>
-                    <button type="button" class="btn btn-sm btn-success" @click.prevent="updateTag()" :disabled="isAdding" :loading="isAdding">
-                        {{ isAdding ? "Editing..." : "Edit" }}
-                    </button>
-                </div> -->
             </div>
         </div>
     </div>
@@ -70,10 +46,11 @@
 </template>
 
 <script>
-import "./style.css";
+import "../Styles/style.css";
 import {
     Modal
 } from "bootstrap";
+
 export default {
     name: "ModalEditCategoryComponent",
     data() {
@@ -95,7 +72,7 @@ export default {
             if (this.categoryEdit.iconImage.trim() == "") return this.e("Icon is required!");
 
             this.isAdding = true;
-            const res = await this.callApi("post", "/category/edit", this.categoryEdit);
+            const res = await this.callApi("post", "category/edit", this.categoryEdit);
 
             if (res.status !== 200) {
                 return this.e("erro na operação");
@@ -114,7 +91,7 @@ export default {
         },
         closeModalEdit() {
             this.editModal.hide();
-            if(!this.first){
+            if (!this.first) {
                 //apaga a imagem do servidor
             }
             this.first = true;
@@ -150,7 +127,7 @@ export default {
             }
             let image = this.categoryEdit.iconImage;
             this.categoryEdit.iconImage = '';
-            const res = await this.callApi('post', '/category/photo-delete', {
+            const res = await this.callApi('post', 'category/photo-delete', {
                 imagename: image
             });
             this.$refs.uploads.clearFiles();
@@ -160,8 +137,10 @@ export default {
             }
         },
         defaultFunc() {
+            this.$emit("getAll", '');
             this.editModal.hide();
-            this.$parent.getAll();
+            // this.$parent.getAll();
+            // this.$emit("add", { product: this.product, quantity: 42 });
             this.categoryEdit.name = "";
             this.categoryEdit.iconImage = "";
             this.categoryEdit.id = "";

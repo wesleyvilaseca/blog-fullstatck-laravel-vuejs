@@ -252,7 +252,7 @@
 </template>
 
 <script>
-import adminLayout from "../../../layouts/admin/adminLayout.vue";
+import adminLayout from "@/layouts/admin/adminLayout.vue";
 
 export default {
   components: {
