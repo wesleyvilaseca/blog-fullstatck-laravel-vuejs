@@ -9,9 +9,9 @@
 
       <section>
         <form @submit.stop.prevent="create()">
-          <div class="ms-2 mt-2 mb-2">
+          <div class="mt-2 mb-2">
             <button type="submit" class="btn btn-primary btn-sm me-2">
-              Salvar <i class="far fa-save"></i>
+              {{ user ? "Editar" : "Salvar" }} <i class="far fa-save"></i>
             </button>
           </div>
           <div class="row">
@@ -45,7 +45,6 @@
                 :label="'User Password'"
                 :type="'password'"
                 v-model="data.password"
-                :required="'required'"
               />
             </div>
 
@@ -78,7 +77,11 @@ export default {
     SelectBoxComponent,
   },
   props: {
+    user: Object,
     title: String,
+    error: String,
+    warning: String,
+    success: String,
   },
   data() {
     return {
@@ -92,22 +95,42 @@ export default {
           name: "Editor",
         },
       ],
-      data: {
+      data: this.$inertia.form({
         name: "",
         email: "",
         password: "",
         userType: "",
-        isActivated: "",
-        socialType: "",
-      },
+        id: "",
+      }),
     };
   },
   methods: {
     create() {
-      console.log(this.data);
+      if (!this.user && !this.data.password) {
+        return this.w("Password is required");
+      }
+      
+      let route = this.user
+        ? `/admin/users/update/${this.user.id}`
+        : "/admin/users/store";
+
+      this.data.post(route, {
+        onSuccess: () => {
+          if (this.warning) return this.w(this.warning);
+
+          if (this.error) return this.e(this.error);
+        },
+      });
     },
   },
   mounted() {},
-  created() {},
+  created() {
+    if (this.user) {
+      this.data.name = this.user.name;
+      this.data.email = this.user.email;
+      this.data.userType = this.user.userType;
+      this.data.id = this.user.id;
+    }
+  },
 };
 </script>

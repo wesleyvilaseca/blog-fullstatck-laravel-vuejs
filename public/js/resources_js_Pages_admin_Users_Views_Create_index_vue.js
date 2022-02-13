@@ -81,7 +81,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -92,7 +91,11 @@ __webpack_require__.r(__webpack_exports__);
     SelectBoxComponent: _components_Selects_SelectBoxComponent_SelectBoxComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   props: {
-    title: String
+    user: Object,
+    title: String,
+    error: String,
+    warning: String,
+    success: String
   },
   data: function data() {
     return {
@@ -103,23 +106,41 @@ __webpack_require__.r(__webpack_exports__);
         id: 1,
         name: "Editor"
       }],
-      data: {
+      data: this.$inertia.form({
         name: "",
         email: "",
         password: "",
         userType: "",
-        isActivated: "",
-        socialType: ""
-      }
+        id: ""
+      })
     };
   },
   methods: {
     create: function create() {
-      console.log(this.data);
+      var _this = this;
+
+      if (!this.user && !this.data.password) {
+        return this.w("Password is required");
+      }
+
+      var route = this.user ? "/admin/users/update/".concat(this.user.id) : "/admin/users/store";
+      this.data.post(route, {
+        onSuccess: function onSuccess() {
+          if (_this.warning) return _this.w(_this.warning);
+          if (_this.error) return _this.e(_this.error);
+        }
+      });
     }
   },
   mounted: function mounted() {},
-  created: function created() {}
+  created: function created() {
+    if (this.user) {
+      this.data.name = this.user.name;
+      this.data.email = this.user.email;
+      this.data.userType = this.user.userType;
+      this.data.id = this.user.id;
+    }
+  }
 });
 
 /***/ }),
@@ -734,7 +755,7 @@ var render = function () {
                   },
                 },
                 [
-                  _c("div", { staticClass: "ms-2 mt-2 mb-2" }, [
+                  _c("div", { staticClass: "mt-2 mb-2" }, [
                     _c(
                       "button",
                       {
@@ -742,7 +763,11 @@ var render = function () {
                         attrs: { type: "submit" },
                       },
                       [
-                        _vm._v("\n            Salvar "),
+                        _vm._v(
+                          "\n            " +
+                            _vm._s(_vm.user ? "Editar" : "Salvar") +
+                            " "
+                        ),
                         _c("i", { staticClass: "far fa-save" }),
                       ]
                     ),
@@ -808,7 +833,6 @@ var render = function () {
                             extraclass: "mt-2",
                             label: "User Password",
                             type: "password",
-                            required: "required",
                           },
                           model: {
                             value: _vm.data.password,

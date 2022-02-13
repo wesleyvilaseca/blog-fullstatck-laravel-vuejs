@@ -44,15 +44,15 @@
                     {{ user.email }}
                   </td>
                   <td>
-                    <button
+                    <Link
                       class="btn btn-sm btn-info"
-                      @click.prevent="editTag(user)"
+                      :href="`/admin/users/edit/${user.id}`"
                     >
                       Edit
-                    </button>
+                    </Link>
                     <button
                       class="btn btn-sm btn-danger"
-                      @click.prevent="delet(user)"
+                      @click.stop.prevent="delet(user)"
                     >
                       Delete
                     </button>
@@ -86,7 +86,20 @@ export default {
     return {};
   },
   methods: {
-    newTag() {},
+    delet(obj) {
+      if (confirm("Are you sure you want too delete the user " + obj.name)) {
+        this.$inertia.post(
+          `/admin/users/delete/${obj.id}`,
+          {
+            onSuccess: () => {
+              if (this.warning) return this.w(this.warning);
+              if (this.error) return this.e(this.error);
+              return this.s(this.success);
+            },
+          }
+        );
+      }
+    },
   },
   mounted() {},
   created() {},

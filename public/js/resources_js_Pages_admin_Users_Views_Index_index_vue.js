@@ -98,7 +98,19 @@ __webpack_require__.r(__webpack_exports__);
     return {};
   },
   methods: {
-    newTag: function newTag() {}
+    delet: function delet(obj) {
+      var _this = this;
+
+      if (confirm("Are you sure you want too delete the user " + obj.name)) {
+        this.$inertia.post("/admin/users/delete/".concat(obj.id), {
+          onSuccess: function onSuccess() {
+            if (_this.warning) return _this.w(_this.warning);
+            if (_this.error) return _this.e(_this.error);
+            return _this.s(_this.success);
+          }
+        });
+      }
+    }
   },
   mounted: function mounted() {},
   created: function created() {}
@@ -534,43 +546,46 @@ var render = function () {
                                     ),
                                   ]),
                                   _vm._v(" "),
-                                  _c("td", [
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-sm btn-info",
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.editTag(user)
+                                  _c(
+                                    "td",
+                                    [
+                                      _c(
+                                        "Link",
+                                        {
+                                          staticClass: "btn btn-sm btn-info",
+                                          attrs: {
+                                            href:
+                                              "/admin/users/edit/" + user.id,
                                           },
                                         },
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                    Edit\n                  "
-                                        ),
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-sm btn-danger",
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.delet(user)
+                                        [
+                                          _vm._v(
+                                            "\n                    Edit\n                  "
+                                          ),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn btn-sm btn-danger",
+                                          on: {
+                                            click: function ($event) {
+                                              $event.stopPropagation()
+                                              $event.preventDefault()
+                                              return _vm.delet(user)
+                                            },
                                           },
                                         },
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                    Delete\n                  "
-                                        ),
-                                      ]
-                                    ),
-                                  ]),
+                                        [
+                                          _vm._v(
+                                            "\n                    Delete\n                  "
+                                          ),
+                                        ]
+                                      ),
+                                    ],
+                                    1
+                                  ),
                                 ])
                               }),
                             ],
