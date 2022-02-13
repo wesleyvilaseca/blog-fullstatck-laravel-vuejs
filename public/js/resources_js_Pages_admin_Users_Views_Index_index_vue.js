@@ -11,8 +11,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
-/* harmony import */ var _layouts_admin_adminLayout_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/layouts/admin/adminLayout.vue */ "./resources/js/layouts/admin/adminLayout.vue");
+/* harmony import */ var _layouts_admin_adminLayout_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/layouts/admin/adminLayout.vue */ "./resources/js/layouts/admin/adminLayout.vue");
 //
 //
 //
@@ -84,183 +83,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    adminLayout: _layouts_admin_adminLayout_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    adminLayout: _layouts_admin_adminLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
-    tags: Array,
+    users: Array,
     error: String,
     warning: String,
     success: String
   },
   data: function data() {
-    return {
-      data: this.$inertia.form({
-        tagName: ""
-      }),
-      editData: this.$inertia.form({
-        tagName: "",
-        id: ""
-      }),
-      isAdding: false,
-      myModal: "",
-      editModal: ""
-    };
+    return {};
   },
   methods: {
-    newTag: function newTag() {
-      this.myModal.show();
-    },
-    editTag: function editTag(obj) {
-      this.editData.tagName = obj.tagName;
-      this.editData.id = obj.id;
-      this.editModal.show();
-    },
-    addTag: function addTag() {
-      var _this = this;
-
-      if (this.data.tagName.trim() == "") return this.e("tag name is required!");
-      this.isAdding = true;
-      this.data.post("/admin/tags/create", {
-        onSuccess: function onSuccess() {
-          _this.isAdding = false;
-          if (_this.warning) return _this.w(_this.warning);
-          if (_this.error) return _this.e(_this.error);
-
-          _this.myModal.hide();
-
-          return _this.s(_this.success);
-        }
-      });
-    },
-    updateTag: function updateTag() {
-      var _this2 = this;
-
-      if (this.editData.tagName.trim() == "") return this.e("tag name is required!");
-      this.isAdding = true;
-      this.editData.post("/admin/tags/edit", {
-        onSuccess: function onSuccess() {
-          _this2.isAdding = false;
-          if (_this2.warning) return _this2.w(_this2.warning);
-          if (_this2.error) return _this2.e(_this2.error);
-
-          _this2.editModal.hide();
-
-          return _this2.s(_this2.success);
-        }
-      });
-    },
-    delet: function delet(obj) {
-      var _this3 = this;
-
-      if (confirm("Are you sure you want too delete the tag " + obj.tagName)) {
-        this.$inertia.post("/admin/tags/delete", {
-          id: obj.id
-        }, {
-          onSuccess: function onSuccess() {
-            if (_this3.warning) return _this3.w(_this3.warning);
-            if (_this3.error) return _this3.e(_this3.error);
-            return _this3.s(_this3.success);
-          }
-        });
-      }
-    }
+    newTag: function newTag() {}
   },
-  mounted: function mounted() {
-    this.myModal = new bootstrap__WEBPACK_IMPORTED_MODULE_0__.Modal(document.getElementById("addTagModal"));
-    this.editModal = new bootstrap__WEBPACK_IMPORTED_MODULE_0__.Modal(document.getElementById("editTagModal"));
-  },
+  mounted: function mounted() {},
   created: function created() {}
 });
 
@@ -344,27 +184,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "adminLayout",
   data: function data() {
     return {
       url: "",
       menu: [{
-        Link: '/admin/home',
-        Title: 'Dashboard',
-        Icon: 'ios-speedometer'
+        Link: "/admin/home",
+        Title: "Dashboard",
+        Icon: 'fa-solid fa-gauge'
       }, {
-        Link: '/admin/tags',
-        Title: 'Tags',
-        Icon: 'ios-speedometer'
+        Link: "/admin/tags",
+        Title: "Tags",
+        Icon: 'fa-solid fa-tags'
       }, {
-        Link: '/admin/category',
-        Title: 'Category',
-        Icon: 'ios-speedometer'
+        Link: "/admin/category",
+        Title: "Category",
+        Icon: 'fa-solid fa-code-branch'
       }, {
-        Link: '/admin/users',
-        Title: 'Users',
-        Icon: 'ios-speedometer'
+        Link: "/admin/users",
+        Title: "Users",
+        Icon: 'fa-solid fa-users'
       }]
     };
   },
@@ -415,7 +258,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n._1side_menu.toggled[data-v-2612c485] {\r\n    left: -248px;\n}\n.header.toggled[data-v-2612c485] {\r\n    padding-left: 0px;\n}\n.content.toggled[data-v-2612c485] {\r\n    margin-left: 0px;\n}\n@media screen and (max-width: 768px) {\n.content[data-v-2612c485] {\r\n        margin-left: 0px;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n._1side_menu.toggled[data-v-2612c485] {\r\n  left: -248px;\n}\n.header.toggled[data-v-2612c485] {\r\n  padding-left: 0px;\n}\n.content.toggled[data-v-2612c485] {\r\n  margin-left: 0px;\n}\n@media screen and (max-width: 768px) {\n.content[data-v-2612c485] {\r\n    margin-left: 0px;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -637,24 +480,24 @@ var render = function () {
                       _c("p", { staticClass: "_title0" }, [_vm._v("Users")]),
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6 text-right" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-sm btn-success",
-                          on: {
-                            click: function ($event) {
-                              $event.preventDefault()
-                              return _vm.newTag()
-                            },
+                    _c(
+                      "div",
+                      { staticClass: "col-md-6 text-right" },
+                      [
+                        _c(
+                          "Link",
+                          {
+                            staticClass: "btn btn-sm btn-success",
+                            attrs: { href: "/admin/users/create" },
                           },
-                        },
-                        [_vm._v("\n              Add\n            ")]
-                      ),
-                    ]),
+                          [_vm._v("\n              Add\n            ")]
+                        ),
+                      ],
+                      1
+                    ),
                   ]),
                   _vm._v(" "),
-                  _vm.tags.length > 0
+                  _vm.users.length > 0
                     ? _c("div", [
                         _c("div", { staticClass: "_overflow _table_div" }, [
                           _c(
@@ -666,17 +509,27 @@ var render = function () {
                                 _vm._v(" "),
                                 _c("th", [_vm._v("User Name")]),
                                 _vm._v(" "),
+                                _c("th", [_vm._v("User Email")]),
+                                _vm._v(" "),
                                 _c("th", [_vm._v("Action")]),
                               ]),
                               _vm._v(" "),
-                              _vm._l(_vm.tags, function (item, index) {
+                              _vm._l(_vm.users, function (user, index) {
                                 return _c("tr", { key: index }, [
-                                  _c("td", [_vm._v(_vm._s(item.id))]),
+                                  _c("td", [_vm._v(_vm._s(user.id))]),
                                   _vm._v(" "),
                                   _c("td", { staticClass: "_table_name" }, [
                                     _vm._v(
                                       "\n                  " +
-                                        _vm._s(item.tagName) +
+                                        _vm._s(user.name) +
+                                        "\n                "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", {}, [
+                                    _vm._v(
+                                      "\n                  " +
+                                        _vm._s(user.email) +
                                         "\n                "
                                     ),
                                   ]),
@@ -689,7 +542,7 @@ var render = function () {
                                         on: {
                                           click: function ($event) {
                                             $event.preventDefault()
-                                            return _vm.editTag(item)
+                                            return _vm.editTag(user)
                                           },
                                         },
                                       },
@@ -707,7 +560,7 @@ var render = function () {
                                         on: {
                                           click: function ($event) {
                                             $event.preventDefault()
-                                            return _vm.delet(item)
+                                            return _vm.delet(user)
                                           },
                                         },
                                       },
@@ -728,218 +581,6 @@ var render = function () {
                     : _c("div", { staticClass: "text-center" }, [
                         _vm._v("Não há registros"),
                       ]),
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "modal",
-                  attrs: { tabindex: "-1", id: "addTagModal" },
-                },
-                [
-                  _c("div", { staticClass: "modal-dialog" }, [
-                    _c("div", { staticClass: "modal-content" }, [
-                      _c("div", { staticClass: "modal-header" }, [
-                        _c("h5", { staticClass: "modal-title" }, [
-                          _vm._v("Adicionar tag"),
-                        ]),
-                        _vm._v(" "),
-                        _c("button", {
-                          staticClass: "btn-close",
-                          attrs: {
-                            type: "button",
-                            "data-bs-dismiss": "modal",
-                            "aria-label": "Close",
-                          },
-                        }),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "modal-body" }, [
-                        _c("div", { staticClass: "mb-3" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "form-label",
-                              attrs: { for: "tagName" },
-                            },
-                            [_vm._v("Tag name")]
-                          ),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.data.tagName,
-                                expression: "data.tagName",
-                              },
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "text", id: "tagName" },
-                            domProps: { value: _vm.data.tagName },
-                            on: {
-                              input: function ($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.data,
-                                  "tagName",
-                                  $event.target.value
-                                )
-                              },
-                            },
-                          }),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "modal-footer" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-secondary btn-sm",
-                            attrs: {
-                              type: "button",
-                              "data-bs-dismiss": "modal",
-                            },
-                          },
-                          [_vm._v("\n                fechar\n              ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-sm btn-success",
-                            attrs: {
-                              type: "button",
-                              disabled: _vm.isAdding,
-                              loading: _vm.isAdding,
-                            },
-                            on: {
-                              click: function ($event) {
-                                $event.preventDefault()
-                                return _vm.addTag.apply(null, arguments)
-                              },
-                            },
-                          },
-                          [
-                            _vm._v(
-                              "\n                " +
-                                _vm._s(_vm.isAdding ? "Adding..." : "Add") +
-                                "\n              "
-                            ),
-                          ]
-                        ),
-                      ]),
-                    ]),
-                  ]),
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "modal",
-                  attrs: { tabindex: "-1", id: "editTagModal" },
-                },
-                [
-                  _c("div", { staticClass: "modal-dialog" }, [
-                    _c("div", { staticClass: "modal-content" }, [
-                      _c("div", { staticClass: "modal-header" }, [
-                        _c("h5", { staticClass: "modal-title" }, [
-                          _vm._v("Edit tag"),
-                        ]),
-                        _vm._v(" "),
-                        _c("button", {
-                          staticClass: "btn-close",
-                          attrs: {
-                            type: "button",
-                            "data-bs-dismiss": "modal",
-                            "aria-label": "Close",
-                          },
-                        }),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "modal-body" }, [
-                        _c("div", { staticClass: "mb-3" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "form-label",
-                              attrs: { for: "tagName" },
-                            },
-                            [_vm._v("Tag name")]
-                          ),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.editData.tagName,
-                                expression: "editData.tagName",
-                              },
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "text", id: "tagName" },
-                            domProps: { value: _vm.editData.tagName },
-                            on: {
-                              input: function ($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.editData,
-                                  "tagName",
-                                  $event.target.value
-                                )
-                              },
-                            },
-                          }),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "modal-footer" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-secondary btn-sm",
-                            attrs: {
-                              type: "button",
-                              "data-bs-dismiss": "modal",
-                            },
-                          },
-                          [_vm._v("\n                fechar\n              ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-sm btn-success",
-                            attrs: {
-                              type: "button",
-                              disabled: _vm.isAdding,
-                              loading: _vm.isAdding,
-                            },
-                            on: {
-                              click: function ($event) {
-                                $event.preventDefault()
-                                return _vm.updateTag()
-                              },
-                            },
-                          },
-                          [
-                            _vm._v(
-                              "\n                " +
-                                _vm._s(_vm.isAdding ? "Editing..." : "Edit") +
-                                "\n              "
-                            ),
-                          ]
-                        ),
-                      ]),
-                    ]),
-                  ]),
                 ]
               ),
             ]),
@@ -998,14 +639,9 @@ var render = function () {
                         attrs: { href: item.Link },
                       },
                       [
-                        _c("Icon", { attrs: { type: item.Icon } }),
-                        _vm._v(
-                          " " +
-                            _vm._s(item.Title) +
-                            "\r\n                            "
-                        ),
-                      ],
-                      1
+                        _c("i", { class: item.Icon }),
+                        _vm._v(_vm._s(item.Title) + "\n              "),
+                      ]
                     ),
                   ],
                   1

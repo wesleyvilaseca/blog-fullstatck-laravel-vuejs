@@ -29,7 +29,6 @@ Route::prefix('admin/tags')->group(function () {
     Route::post('/delete',  [TagController::class, 'delete']);
 });
 
-
 Route::prefix('admin/category')->group(function () {
     Route::get("/",                 [CategoryController::class, 'index'])->name('admin.categoryes');
     Route::get("/all",              [CategoryController::class, 'all']);
@@ -41,7 +40,12 @@ Route::prefix('admin/category')->group(function () {
 });
 
 Route::prefix('admin/users')->group(function () {
-    Route::get('/', [UsersController::class, 'index'])->name('users');
+    Route::get('/',                 [UsersController::class, 'index'])->name('users');
+    Route::get('/create',           [UsersController::class, 'create'])->name('user.create');
+    Route::post('/store',           [UsersController::class, 'store'])->name('user.store');
+    Route::get('/edit/{id}',        [UsersController::class, 'edit'])->name('user.edit');
+    Route::post('/update/{id}',     [UsersController::class, 'update'])->name('user.update');
+    Route::post('/delete/{id}',     [UsersController::class, 'delete'])->name('user.delete');
 });
 
 Route::get('/login', function () {

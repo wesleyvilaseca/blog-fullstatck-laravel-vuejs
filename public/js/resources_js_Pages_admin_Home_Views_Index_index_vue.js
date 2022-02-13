@@ -353,27 +353,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "adminLayout",
   data: function data() {
     return {
       url: "",
       menu: [{
-        Link: '/admin/home',
-        Title: 'Dashboard',
-        Icon: 'ios-speedometer'
+        Link: "/admin/home",
+        Title: "Dashboard",
+        Icon: 'fa-solid fa-gauge'
       }, {
-        Link: '/admin/tags',
-        Title: 'Tags',
-        Icon: 'ios-speedometer'
+        Link: "/admin/tags",
+        Title: "Tags",
+        Icon: 'fa-solid fa-tags'
       }, {
-        Link: '/admin/category',
-        Title: 'Category',
-        Icon: 'ios-speedometer'
+        Link: "/admin/category",
+        Title: "Category",
+        Icon: 'fa-solid fa-code-branch'
       }, {
-        Link: '/admin/users',
-        Title: 'Users',
-        Icon: 'ios-speedometer'
+        Link: "/admin/users",
+        Title: "Users",
+        Icon: 'fa-solid fa-users'
       }]
     };
   },
@@ -424,7 +427,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n._1side_menu.toggled[data-v-2612c485] {\r\n    left: -248px;\n}\n.header.toggled[data-v-2612c485] {\r\n    padding-left: 0px;\n}\n.content.toggled[data-v-2612c485] {\r\n    margin-left: 0px;\n}\n@media screen and (max-width: 768px) {\n.content[data-v-2612c485] {\r\n        margin-left: 0px;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n._1side_menu.toggled[data-v-2612c485] {\r\n  left: -248px;\n}\n.header.toggled[data-v-2612c485] {\r\n  padding-left: 0px;\n}\n.content.toggled[data-v-2612c485] {\r\n  margin-left: 0px;\n}\n@media screen and (max-width: 768px) {\n.content[data-v-2612c485] {\r\n    margin-left: 0px;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1179,14 +1182,9 @@ var render = function () {
                         attrs: { href: item.Link },
                       },
                       [
-                        _c("Icon", { attrs: { type: item.Icon } }),
-                        _vm._v(
-                          " " +
-                            _vm._s(item.Title) +
-                            "\r\n                            "
-                        ),
-                      ],
-                      1
+                        _c("i", { class: item.Icon }),
+                        _vm._v(_vm._s(item.Title) + "\n              "),
+                      ]
                     ),
                   ],
                   1

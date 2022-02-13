@@ -16,7 +16,29 @@ class UsersController extends Controller
 
     public function index(Request $request)
     {
-        $data['tags'] = Tag::all();
+        $data['users'] = User::all();
         return Inertia::render('admin/Users/Views/Index', $data);
+    }
+
+    public function create(Request $request)
+    {
+        $data['title'] = 'New User';
+        return Inertia::render('admin/Users/Views/Create', $data);
+    }
+
+    public function store(Request $request)
+    {
+    }
+
+    public function edit(int $id, Request $request)
+    {
+    }
+
+    public function update(int $id, Request $request)
+    {
+    }
+
+    public function delete(int $id, Request $request)
+    {
     }
 }
