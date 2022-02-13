@@ -322,6 +322,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "adminLayout",
   data: function data() {
@@ -330,19 +336,19 @@ __webpack_require__.r(__webpack_exports__);
       menu: [{
         Link: "/admin/home",
         Title: "Dashboard",
-        Icon: 'fa-solid fa-gauge'
+        Icon: "fa-solid fa-gauge"
       }, {
         Link: "/admin/tags",
         Title: "Tags",
-        Icon: 'fa-solid fa-tags'
+        Icon: "fa-solid fa-tags"
       }, {
         Link: "/admin/category",
         Title: "Category",
-        Icon: 'fa-solid fa-code-branch'
+        Icon: "fa-solid fa-code-branch"
       }, {
         Link: "/admin/users",
         Title: "Users",
-        Icon: 'fa-solid fa-users'
+        Icon: "fa-solid fa-users"
       }]
     };
   },
@@ -1016,29 +1022,44 @@ var render = function () {
             _c(
               "ul",
               { staticClass: "_1side_menu_list_ul" },
-              _vm._l(_vm.menu, function (item, index) {
-                return _c(
-                  "li",
-                  { key: index },
-                  [
-                    _c(
-                      "Link",
-                      {
-                        class: {
-                          "router-link-exact-active": item.Link === _vm.url,
+              [
+                _vm._l(_vm.menu, function (item, index) {
+                  return _c(
+                    "li",
+                    { key: index },
+                    [
+                      _c(
+                        "Link",
+                        {
+                          class: {
+                            "router-link-exact-active": item.Link === _vm.url,
+                          },
+                          attrs: { href: item.Link },
                         },
-                        attrs: { href: item.Link },
-                      },
-                      [
-                        _c("i", { class: item.Icon }),
-                        _vm._v(_vm._s(item.Title) + "\n              "),
-                      ]
-                    ),
+                        [
+                          _c("i", { class: item.Icon }),
+                          _vm._v(_vm._s(item.Title) + "\n              "),
+                        ]
+                      ),
+                    ],
+                    1
+                  )
+                }),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  [
+                    _c("Link", { attrs: { href: "/logout" } }, [
+                      _c("i", {
+                        staticClass: "fa-solid fa-arrow-right-from-bracket",
+                      }),
+                      _vm._v("Logout\n              "),
+                    ]),
                   ],
                   1
-                )
-              }),
-              0
+                ),
+              ],
+              2
             ),
           ]),
         ]),

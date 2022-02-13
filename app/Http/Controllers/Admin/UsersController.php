@@ -90,6 +90,13 @@ class UsersController extends Controller
             return Redirect::route('user.edit')->with('error', $validate->errors());
         }
 
+        if ($request->email !== $user->email) {
+            $exist = User::where(['email' => $request->email])->first();
+            if ($exist) {
+                return Redirect::route('user.create')->with('warning', 'There is already a user with this email');
+            }
+        }
+
         $data = [
             'name'      => $request->name,
             'email'     => $request->email,

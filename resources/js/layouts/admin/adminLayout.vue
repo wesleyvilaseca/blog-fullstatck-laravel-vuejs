@@ -22,6 +22,12 @@
                   <i :class="item.Icon"></i>{{ item.Title }}
                 </Link>
               </li>
+
+              <li>
+                <Link href="/logout">
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i>Logout
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -79,22 +85,22 @@ export default {
         {
           Link: "/admin/home",
           Title: "Dashboard",
-          Icon: 'fa-solid fa-gauge',
+          Icon: "fa-solid fa-gauge",
         },
         {
           Link: "/admin/tags",
           Title: "Tags",
-          Icon: 'fa-solid fa-tags',
+          Icon: "fa-solid fa-tags",
         },
         {
           Link: "/admin/category",
           Title: "Category",
-          Icon: 'fa-solid fa-code-branch',
+          Icon: "fa-solid fa-code-branch",
         },
         {
           Link: "/admin/users",
           Title: "Users",
-          Icon: 'fa-solid fa-users',
+          Icon: "fa-solid fa-users",
         },
       ],
     };

@@ -1,6 +1,6 @@
 <template>
   <adminLayout>
-    <template class="container-fluid" v-slot:page-content>
+    <template class="container" v-slot:page-content>
       <div class="row">
         <div class="col-12 col-md-3">
           <div
