@@ -81,15 +81,9 @@ export default {
   data() {
     return {
       url: "",
-      menu: "",
     };
   },
   methods: {
-    async getMenu() {
-      const res = await this.callApi('get', '/admin/menu');
-      this.menu = res.data;
-    },
-
     getURL() {
       this.url = window.location.pathname;
     },
@@ -112,11 +106,15 @@ export default {
   },
   created() {
     this.getURL();
-    this.getMenu();
   },
   mounted() {
     let w = window.innerWidth;
     if (w <= 660) this.btnToggle();
+  },
+  computed: {
+    menu() {
+      return this.$page.props.menu;
+    },
   },
 };
 </script>
