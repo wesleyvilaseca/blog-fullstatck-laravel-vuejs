@@ -7,13 +7,17 @@ use App\Models\Tag;
 use Gate;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Symfony\Component\HttpFoundation\Response;
 
 class TagController extends Controller
 {
     private $tag;
+    protected static $acl = 'tags_';
 
     public function __construct(
         Tag $tag
@@ -23,7 +27,7 @@ class TagController extends Controller
 
     public function index(Request $request)
     {
-        abort_if(Gate::denies('tags_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies(self::$acl . 'access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $data['tags'] = $this->tag->all();
 
@@ -38,7 +42,7 @@ class TagController extends Controller
 
     public function create(Request $request)
     {
-        abort_if(Gate::denies('tags_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies(self::$acl . 'create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $validate = Validator::make($request->all(), [
             'tagName' => ['required']
@@ -66,8 +70,8 @@ class TagController extends Controller
         abort_if(Gate::denies('tags_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $validate = Validator::make($request->all(), [
-            'tagName' => ['required'],
-            'id' => ['required']
+            'tagName'   => ['required'],
+            'id'        => ['required']
         ]);
 
         if ($validate->fails()) {
@@ -95,7 +99,7 @@ class TagController extends Controller
 
     public function delete(Request $request)
     {
-        abort_if(Gate::denies('tags_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies(self::$acl . 'delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $validate = Validator::make($request->all(), [
             'id' => ['required']

@@ -81,41 +81,15 @@ export default {
   data() {
     return {
       url: "",
-      menu: [
-        {
-          Link: "/admin/home",
-          Title: "Dashboard",
-          Icon: "fa-solid fa-gauge",
-        },
-        {
-          Link: "/admin/tags",
-          Title: "Tags",
-          Icon: "fa-solid fa-tags",
-        },
-        {
-          Link: "/admin/category",
-          Title: "Category",
-          Icon: "fa-solid fa-code-branch",
-        },
-        {
-          Link: "/admin/permissions",
-          Title: "Permissions",
-          Icon: "fa-solid fa-lock",
-        },
-        {
-          Link: "/admin/roles",
-          Title: "Roles",
-          Icon: "fa-solid fa-user-group",
-        },
-        {
-          Link: "/admin/users",
-          Title: "Users",
-          Icon: "fa-solid fa-users",
-        },
-      ],
+      menu: "",
     };
   },
   methods: {
+    async getMenu() {
+      const res = await this.callApi('get', '/admin/menu');
+      this.menu = res.data;
+    },
+
     getURL() {
       this.url = window.location.pathname;
     },
@@ -138,6 +112,7 @@ export default {
   },
   created() {
     this.getURL();
+    this.getMenu();
   },
   mounted() {
     let w = window.innerWidth;

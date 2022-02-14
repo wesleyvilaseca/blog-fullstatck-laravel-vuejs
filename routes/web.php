@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\LayoutController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RolesController;
@@ -23,6 +24,7 @@ use Inertia\Inertia;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('admin/home', [HomeController::class, 'index'])->name('admin.home');
+    Route::get('admin/menu', [LayoutController::class, 'getMenu'])->name('amdin.menu');
 
     Route::prefix('admin/tags')->group(function () {
         Route::get('/',         [TagController::class, 'index'])->name('admin.tags');
