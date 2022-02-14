@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -42,6 +43,15 @@ Route::middleware(['auth'])->group(function () {
         Route::post("/delete",          [CategoryController::class, 'delete']);
         Route::post('/photo-upload',    [CategoryController::class, 'upload']);
         Route::post('/photo-delete',    [CategoryController::class, 'upload_delete']);
+    });
+
+    Route::prefix('admin/blogs')->group(function () {
+        Route::get("/",                 [BlogsController::class, 'index'])->name('admin.blogs');
+        Route::get("/create",           [BlogsController::class, 'create'])->name('blog.create');
+        Route::post("/store",           [BlogsController::class, 'store'])->name('blog.store');
+        Route::get("/edit/{id}",        [BlogsController::class, 'edit'])->name('blog.edit');
+        Route::post("/update/{id}",     [BlogsController::class, 'update'])->name('blog.update');
+        Route::post("/delete/{id}",     [BlogsController::class, 'delete'])->name('blog.delete');
     });
 
     Route::prefix('admin/users')->group(function () {
