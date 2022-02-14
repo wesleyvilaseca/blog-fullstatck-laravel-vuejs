@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
+use Gate;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Symfony\Component\HttpFoundation\Response;
 
 class TagController extends Controller
 {
@@ -21,6 +23,8 @@ class TagController extends Controller
 
     public function index(Request $request)
     {
+        abort_if(Gate::denies('tags_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $data['tags'] = $this->tag->all();
 
         return Inertia::render('admin/Tags/Views/Index', $data);
@@ -34,6 +38,8 @@ class TagController extends Controller
 
     public function create(Request $request)
     {
+        abort_if(Gate::denies('tags_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $validate = Validator::make($request->all(), [
             'tagName' => ['required']
         ]);
@@ -57,6 +63,8 @@ class TagController extends Controller
 
     public function update(Request $request)
     {
+        abort_if(Gate::denies('tags_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $validate = Validator::make($request->all(), [
             'tagName' => ['required'],
             'id' => ['required']
@@ -87,6 +95,8 @@ class TagController extends Controller
 
     public function delete(Request $request)
     {
+        abort_if(Gate::denies('tags_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $validate = Validator::make($request->all(), [
             'id' => ['required']
         ]);
