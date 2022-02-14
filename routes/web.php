@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UsersController;
 use Inertia\Inertia;
 
@@ -47,6 +49,24 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit/{id}',        [UsersController::class, 'edit'])->name('user.edit');
         Route::post('/update/{id}',     [UsersController::class, 'update'])->name('user.update');
         Route::post('/delete/{id}',     [UsersController::class, 'delete'])->name('user.delete');
+    });
+
+    Route::prefix('admin/permissions')->group(function () {
+        Route::get('/',                 [PermissionController::class, 'index'])->name('permissions');
+        Route::get('/create',           [PermissionController::class, 'create'])->name('permission.create');
+        Route::post('/store',           [PermissionController::class, 'store'])->name('permission.store');
+        Route::get('/edit/{id}',        [PermissionController::class, 'edit'])->name('permission.edit');
+        Route::post('/update/{id}',     [PermissionController::class, 'update'])->name('permission.update');
+        Route::post('/delete/{id}',     [PermissionController::class, 'delete'])->name('permission.delete');
+    });
+
+    Route::prefix('admin/roles')->group(function () {
+        Route::get('/',                 [RolesController::class, 'index'])->name('roles');
+        Route::get('/create',           [RolesController::class, 'create'])->name('role.create');
+        Route::post('/store',           [RolesController::class, 'store'])->name('role.store');
+        Route::get('/edit/{id}',        [RolesController::class, 'edit'])->name('role.edit');
+        Route::post('/update/{id}',     [RolesController::class, 'update'])->name('role.update');
+        Route::post('/delete/{id}',     [RolesController::class, 'delete'])->name('role.delete');
     });
 });
 

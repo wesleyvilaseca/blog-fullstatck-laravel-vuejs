@@ -371,6 +371,14 @@ __webpack_require__.r(__webpack_exports__);
         Title: "Category",
         Icon: "fa-solid fa-code-branch"
       }, {
+        Link: "/admin/permissions",
+        Title: "Permissions",
+        Icon: "fa-solid fa-lock"
+      }, {
+        Link: "/admin/roles",
+        Title: "Roles",
+        Icon: "fa-solid fa-user-group"
+      }, {
         Link: "/admin/users",
         Title: "Users",
         Icon: "fa-solid fa-users"

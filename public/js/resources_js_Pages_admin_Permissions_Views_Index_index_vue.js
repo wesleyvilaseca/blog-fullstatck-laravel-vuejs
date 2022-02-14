@@ -1,202 +1,18 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_Pages_admin_Home_Views_Index_index_vue"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_Pages_admin_Permissions_Views_Index_index_vue"],{
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/admin/Home/Views/Index/index.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/admin/Home/Views/Index/index.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/admin/Permissions/Views/Index/index.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/admin/Permissions/Views/Index/index.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _layouts_admin_adminLayout_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/layouts/admin/adminLayout.vue */ "./resources/js/layouts/admin/adminLayout.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
+/* harmony import */ var _layouts_admin_adminLayout_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/layouts/admin/adminLayout.vue */ "./resources/js/layouts/admin/adminLayout.vue");
 //
 //
 //
@@ -266,11 +82,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    adminLayout: _layouts_admin_adminLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    adminLayout: _layouts_admin_adminLayout_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  mounted: function mounted() {}
+  props: {
+    permissions: Array,
+    error: String,
+    warning: String,
+    success: String
+  },
+  data: function data() {
+    return {};
+  },
+  methods: {},
+  mounted: function mounted() {},
+  created: function created() {}
 });
 
 /***/ }),
@@ -477,18 +305,18 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ "./resources/js/Pages/admin/Home/Views/Index/index.vue":
-/*!*************************************************************!*\
-  !*** ./resources/js/Pages/admin/Home/Views/Index/index.vue ***!
-  \*************************************************************/
+/***/ "./resources/js/Pages/admin/Permissions/Views/Index/index.vue":
+/*!********************************************************************!*\
+  !*** ./resources/js/Pages/admin/Permissions/Views/Index/index.vue ***!
+  \********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _index_vue_vue_type_template_id_bb53caa6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=bb53caa6& */ "./resources/js/Pages/admin/Home/Views/Index/index.vue?vue&type=template&id=bb53caa6&");
-/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/js/Pages/admin/Home/Views/Index/index.vue?vue&type=script&lang=js&");
+/* harmony import */ var _index_vue_vue_type_template_id_6e521a60___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=6e521a60& */ "./resources/js/Pages/admin/Permissions/Views/Index/index.vue?vue&type=template&id=6e521a60&");
+/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/js/Pages/admin/Permissions/Views/Index/index.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -499,8 +327,8 @@ __webpack_require__.r(__webpack_exports__);
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _index_vue_vue_type_template_id_bb53caa6___WEBPACK_IMPORTED_MODULE_0__.render,
-  _index_vue_vue_type_template_id_bb53caa6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _index_vue_vue_type_template_id_6e521a60___WEBPACK_IMPORTED_MODULE_0__.render,
+  _index_vue_vue_type_template_id_6e521a60___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -510,7 +338,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/Pages/admin/Home/Views/Index/index.vue"
+component.options.__file = "resources/js/Pages/admin/Permissions/Views/Index/index.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -555,17 +383,17 @@ component.options.__file = "resources/js/layouts/admin/adminLayout.vue"
 
 /***/ }),
 
-/***/ "./resources/js/Pages/admin/Home/Views/Index/index.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/Pages/admin/Home/Views/Index/index.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************/
+/***/ "./resources/js/Pages/admin/Permissions/Views/Index/index.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/Pages/admin/Permissions/Views/Index/index.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/admin/Home/Views/Index/index.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/admin/Permissions/Views/Index/index.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
@@ -597,18 +425,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/Pages/admin/Home/Views/Index/index.vue?vue&type=template&id=bb53caa6&":
-/*!********************************************************************************************!*\
-  !*** ./resources/js/Pages/admin/Home/Views/Index/index.vue?vue&type=template&id=bb53caa6& ***!
-  \********************************************************************************************/
+/***/ "./resources/js/Pages/admin/Permissions/Views/Index/index.vue?vue&type=template&id=6e521a60&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/Pages/admin/Permissions/Views/Index/index.vue?vue&type=template&id=6e521a60& ***!
+  \***************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_bb53caa6___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_bb53caa6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_6e521a60___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_6e521a60___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_bb53caa6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./index.vue?vue&type=template&id=bb53caa6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/admin/Home/Views/Index/index.vue?vue&type=template&id=bb53caa6&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_6e521a60___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./index.vue?vue&type=template&id=6e521a60& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/admin/Permissions/Views/Index/index.vue?vue&type=template&id=6e521a60&");
 
 
 /***/ }),
@@ -629,10 +457,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/admin/Home/Views/Index/index.vue?vue&type=template&id=bb53caa6&":
-/*!***********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/admin/Home/Views/Index/index.vue?vue&type=template&id=bb53caa6& ***!
-  \***********************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/admin/Permissions/Views/Index/index.vue?vue&type=template&id=6e521a60&":
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/admin/Permissions/Views/Index/index.vue?vue&type=template&id=6e521a60& ***!
+  \******************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -650,497 +478,115 @@ var render = function () {
         key: "page-content",
         fn: function () {
           return [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-12 col-md-3" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "\n            _1adminOverveiw_card\n            _box_shadow\n            _border_radious\n            _mar_b30\n            _1adminOverveiw_bg_one\n          ",
-                  },
-                  [
-                    _c("div", { staticClass: "_1adminOverveiw_card_left" }, [
+            _c("div", { staticClass: "container-fluid" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "\n          _1adminOverveiw_table_recent\n          _box_shadow\n          _border_radious\n          _mar_b30\n          _p20\n        ",
+                },
+                [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("p", { staticClass: "_title0" }, [
+                        _vm._v("Permissions"),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6 text-right" }, [
                       _c(
-                        "p",
-                        { staticClass: "_1adminOverveiw_card_left_num" },
-                        [_vm._v("3")]
+                        "button",
+                        {
+                          staticClass: "btn btn-sm btn-success",
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.newTag()
+                            },
+                          },
+                        },
+                        [_vm._v("\n              Add\n            ")]
                       ),
-                      _vm._v(" "),
-                      _c(
-                        "p",
-                        { staticClass: "_1adminOverveiw_card_left_title" },
-                        [_vm._v("Today's News")]
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "_1adminOverveiw_card_right" },
-                      [_c("Icon", { attrs: { type: "ios-paper" } })],
-                      1
-                    ),
-                  ]
-                ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-12 col-md-3" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "\n            _1adminOverveiw_card\n            _box_shadow\n            _border_radious\n            _mar_b30\n            _1adminOverveiw_bg_two\n          ",
-                  },
-                  [
-                    _c("div", { staticClass: "_1adminOverveiw_card_left" }, [
-                      _c(
-                        "p",
-                        { staticClass: "_1adminOverveiw_card_left_num" },
-                        [_vm._v("29")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "p",
-                        { staticClass: "_1adminOverveiw_card_left_title" },
-                        [_vm._v("Total News")]
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "_1adminOverveiw_card_right" },
-                      [_c("Icon", { attrs: { type: "ios-paper-outline" } })],
-                      1
-                    ),
-                  ]
-                ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-12 col-md-3" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "\n            _1adminOverveiw_card\n            _box_shadow\n            _border_radious\n            _mar_b30\n            _1adminOverveiw_bg_two\n          ",
-                  },
-                  [
-                    _c("div", { staticClass: "_1adminOverveiw_card_left" }, [
-                      _c(
-                        "p",
-                        { staticClass: "_1adminOverveiw_card_left_num" },
-                        [_vm._v("29")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "p",
-                        { staticClass: "_1adminOverveiw_card_left_title" },
-                        [_vm._v("Features News")]
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "_1adminOverveiw_card_right" },
-                      [_c("Icon", { attrs: { type: "md-copy" } })],
-                      1
-                    ),
-                  ]
-                ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-12 col-md-3" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "\n            _1adminOverveiw_card\n            _box_shadow\n            _border_radious\n            _mar_b30\n            _1adminOverveiw_bg_two\n          ",
-                  },
-                  [
-                    _c("div", { staticClass: "_1adminOverveiw_card_left" }, [
-                      _c(
-                        "p",
-                        { staticClass: "_1adminOverveiw_card_left_num" },
-                        [_vm._v("29")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "p",
-                        { staticClass: "_1adminOverveiw_card_left_title" },
-                        [_vm._v("Card News")]
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "_1adminOverveiw_card_right" },
-                      [_c("Icon", { attrs: { type: "md-list-box" } })],
-                      1
-                    ),
-                  ]
-                ),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "\n        _1adminOverveiw_table_recent\n        _box_shadow\n        _border_radious\n        _mar_b30\n        _p20\n      ",
-              },
-              [
-                _c("p", { staticClass: "_title0" }, [_vm._v("Recent News")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "_overflow _table_div" }, [
-                  _c("table", { staticClass: "_table" }, [
-                    _c("tr", [
-                      _c("th", [_vm._v("Date")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("Title")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("Category")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("Action")]),
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [_vm._v("25-05-19")]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "_table_name" }, [
-                        _vm._v(
-                          '\n              Manhattan\'s art center "Shed" opening ceremony\n            '
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Economy")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn view_btn1",
-                            attrs: { type: "button" },
-                          },
-                          [_vm._v("\n                View\n              ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn edit_btn1",
-                            attrs: { type: "button" },
-                          },
-                          [_vm._v("\n                Edit\n              ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn make_btn2",
-                            attrs: { type: "button" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                Make Features\n              "
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn make_btn3",
-                            attrs: { type: "button" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                Make Card\n              "
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn make_btn1",
-                            attrs: { type: "button" },
-                          },
-                          [_vm._v("\n                Delete\n              ")]
-                        ),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [_vm._v("25-05-19")]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "_table_name" }, [
-                        _vm._v(
-                          "\n              Are Trump era is having an impact on what 's future voters\n            "
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Social")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn view_btn1",
-                            attrs: { type: "button" },
-                          },
-                          [_vm._v("\n                View\n              ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn edit_btn1",
-                            attrs: { type: "button" },
-                          },
-                          [_vm._v("\n                Edit\n              ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn make_btn2",
-                            attrs: { type: "button" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                Make Features\n              "
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn make_btn3",
-                            attrs: { type: "button" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                Make Card\n              "
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn make_btn1",
-                            attrs: { type: "button" },
-                          },
-                          [_vm._v("\n                Delete\n              ")]
-                        ),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [_vm._v("25-05-19")]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "_table_name" }, [
-                        _vm._v(
-                          '\n              Manhattan\'s art center "Shed" opening ceremony\n            '
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Economy")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn view_btn1",
-                            attrs: { type: "button" },
-                          },
-                          [_vm._v("\n                View\n              ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn edit_btn1",
-                            attrs: { type: "button" },
-                          },
-                          [_vm._v("\n                Edit\n              ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn make_btn2",
-                            attrs: { type: "button" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                Make Features\n              "
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn make_btn3",
-                            attrs: { type: "button" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                Make Card\n              "
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn make_btn1",
-                            attrs: { type: "button" },
-                          },
-                          [_vm._v("\n                Delete\n              ")]
-                        ),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [_vm._v("25-05-19")]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "_table_name" }, [
-                        _vm._v(
-                          "\n              Are Trump era is having an impact on what 's future voters\n            "
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Social")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn view_btn1",
-                            attrs: { type: "button" },
-                          },
-                          [_vm._v("\n                View\n              ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn edit_btn1",
-                            attrs: { type: "button" },
-                          },
-                          [_vm._v("\n                Edit\n              ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn make_btn2",
-                            attrs: { type: "button" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                Make Features\n              "
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn make_btn3",
-                            attrs: { type: "button" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                Make Card\n              "
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn make_btn1",
-                            attrs: { type: "button" },
-                          },
-                          [_vm._v("\n                Delete\n              ")]
-                        ),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [_vm._v("25-05-19")]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "_table_name" }, [
-                        _vm._v(
-                          "\n              Are Trump era is having an impact on what 's future voters\n            "
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Social")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn view_btn1",
-                            attrs: { type: "button" },
-                          },
-                          [_vm._v("\n                View\n              ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn edit_btn1",
-                            attrs: { type: "button" },
-                          },
-                          [_vm._v("\n                Edit\n              ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn make_btn2",
-                            attrs: { type: "button" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                Make Features\n              "
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn make_btn3",
-                            attrs: { type: "button" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                Make Card\n              "
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_btn _action_btn make_btn1",
-                            attrs: { type: "button" },
-                          },
-                          [_vm._v("\n                Delete\n              ")]
-                        ),
-                      ]),
                     ]),
                   ]),
-                ]),
-              ]
-            ),
-            _vm._v(" "),
-            _c("Page", { attrs: { total: 100 } }),
+                  _vm._v(" "),
+                  _vm.permissions.length > 0
+                    ? _c("div", [
+                        _c("div", { staticClass: "_overflow _table_div" }, [
+                          _c(
+                            "table",
+                            { staticClass: "_table" },
+                            [
+                              _c("tr", [
+                                _c("th", [_vm._v("id")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v("Name")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v("Action")]),
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.permissions, function (item, index) {
+                                return _c("tr", { key: index }, [
+                                  _c("td", [_vm._v(_vm._s(item.id))]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "_table_name" }, [
+                                    _vm._v(
+                                      "\n                  " +
+                                        _vm._s(item.name) +
+                                        "\n                "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-sm btn-info",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.editTag(item)
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                    Edit\n                  "
+                                        ),
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-sm btn-danger",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.delet(item)
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                    Delete\n                  "
+                                        ),
+                                      ]
+                                    ),
+                                  ]),
+                                ])
+                              }),
+                            ],
+                            2
+                          ),
+                        ]),
+                      ])
+                    : _c("div", { staticClass: "text-center" }, [
+                        _vm._v("Não há registros"),
+                      ]),
+                ]
+              ),
+            ]),
           ]
         },
         proxy: true,

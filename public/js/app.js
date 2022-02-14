@@ -93024,6 +93024,38 @@ var map = {
 		"./resources/js/Pages/admin/Login/Views/Index/index.vue",
 		"resources_js_Pages_admin_Login_Views_Index_index_vue"
 	],
+	"./admin/Permissions/Views/Index": [
+		"./resources/js/Pages/admin/Permissions/Views/Index/index.vue",
+		"resources_js_Pages_admin_Permissions_Views_Index_index_vue"
+	],
+	"./admin/Permissions/Views/Index/": [
+		"./resources/js/Pages/admin/Permissions/Views/Index/index.vue",
+		"resources_js_Pages_admin_Permissions_Views_Index_index_vue"
+	],
+	"./admin/Permissions/Views/Index/index": [
+		"./resources/js/Pages/admin/Permissions/Views/Index/index.vue",
+		"resources_js_Pages_admin_Permissions_Views_Index_index_vue"
+	],
+	"./admin/Permissions/Views/Index/index.vue": [
+		"./resources/js/Pages/admin/Permissions/Views/Index/index.vue",
+		"resources_js_Pages_admin_Permissions_Views_Index_index_vue"
+	],
+	"./admin/Roles/Views/Index": [
+		"./resources/js/Pages/admin/Roles/Views/Index/index.vue",
+		"resources_js_Pages_admin_Roles_Views_Index_index_vue"
+	],
+	"./admin/Roles/Views/Index/": [
+		"./resources/js/Pages/admin/Roles/Views/Index/index.vue",
+		"resources_js_Pages_admin_Roles_Views_Index_index_vue"
+	],
+	"./admin/Roles/Views/Index/index": [
+		"./resources/js/Pages/admin/Roles/Views/Index/index.vue",
+		"resources_js_Pages_admin_Roles_Views_Index_index_vue"
+	],
+	"./admin/Roles/Views/Index/index.vue": [
+		"./resources/js/Pages/admin/Roles/Views/Index/index.vue",
+		"resources_js_Pages_admin_Roles_Views_Index_index_vue"
+	],
 	"./admin/Tags/Views/Index": [
 		"./resources/js/Pages/admin/Tags/Views/Index/index.vue",
 		"resources_js_Pages_admin_Tags_Views_Index_index_vue"
@@ -93219,7 +93251,7 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","D:\\\\wamp64\\\\www\\\\s
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_Pages_admin_Category_Components_ModalAddCategoryComponent_vue":1,"resources_js_Pages_admin_Category_Components_ModalEditCategoryComponent_vue":1,"resources_js_Pages_admin_Category_Styles_style_css":1,"resources_js_Pages_admin_Category_Views_Index_index_vue":1,"resources_js_Pages_admin_Home_Views_Index_index_vue":1,"resources_js_Pages_admin_Login_Styles_style_css":1,"resources_js_Pages_admin_Login_Views_Index_index_vue":1,"resources_js_Pages_admin_Tags_Views_Index_index_vue":1,"resources_js_Pages_admin_Users_Views_Create_index_vue":1,"resources_js_Pages_admin_Users_Views_Index_index_vue":1,"resources_js_Pages_blog_Home_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_Pages_admin_Category_Components_ModalAddCategoryComponent_vue":1,"resources_js_Pages_admin_Category_Components_ModalEditCategoryComponent_vue":1,"resources_js_Pages_admin_Category_Styles_style_css":1,"resources_js_Pages_admin_Category_Views_Index_index_vue":1,"resources_js_Pages_admin_Home_Views_Index_index_vue":1,"resources_js_Pages_admin_Login_Styles_style_css":1,"resources_js_Pages_admin_Login_Views_Index_index_vue":1,"resources_js_Pages_admin_Permissions_Views_Index_index_vue":1,"resources_js_Pages_admin_Roles_Views_Index_index_vue":1,"resources_js_Pages_admin_Tags_Views_Index_index_vue":1,"resources_js_Pages_admin_Users_Views_Create_index_vue":1,"resources_js_Pages_admin_Users_Views_Index_index_vue":1,"resources_js_Pages_blog_Home_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
