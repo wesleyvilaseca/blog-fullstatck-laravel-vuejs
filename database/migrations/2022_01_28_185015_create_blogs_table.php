@@ -20,8 +20,9 @@ class CreateBlogsTable extends Migration
             $table->string('post_excerpt');
             $table->string('slug')->unique();
             $table->integer('user_id');
-            $table->string('featuredImage');
+            $table->string('featuredImage')->nullable();
             $table->string('metaDescription');
+            $table->text('jsonData');
             $table->integer('views')->default(0);
 
             $table->timestamps();

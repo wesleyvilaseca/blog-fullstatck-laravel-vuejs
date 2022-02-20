@@ -23,6 +23,7 @@ use Inertia\Inertia;
 |
 */
 
+
 Route::middleware(['auth'])->group(function () {
     Route::get('admin/home', [HomeController::class, 'index'])->name('admin.home');
     Route::get('admin/menu', [LayoutController::class, 'getMenu'])->name('amdin.menu');
@@ -46,12 +47,14 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::prefix('admin/blogs')->group(function () {
-        Route::get("/",                 [BlogsController::class, 'index'])->name('admin.blogs');
-        Route::get("/create",           [BlogsController::class, 'create'])->name('blog.create');
-        Route::post("/store",           [BlogsController::class, 'store'])->name('blog.store');
-        Route::get("/edit/{id}",        [BlogsController::class, 'edit'])->name('blog.edit');
-        Route::post("/update/{id}",     [BlogsController::class, 'update'])->name('blog.update');
-        Route::post("/delete/{id}",     [BlogsController::class, 'delete'])->name('blog.delete');
+        Route::get("/",                     [BlogsController::class, 'index'])->name('admin.blogs');
+        Route::get("/create",               [BlogsController::class, 'create'])->name('blog.create');
+        Route::post('/create',              [BlogsController::class, 'imageUpload']);
+        Route::post("/store-blogpost",      [BlogsController::class, 'store'])->name('blog.store');
+        
+        Route::get("/edit/{id}",            [BlogsController::class, 'edit'])->name('blog.edit');
+        Route::post("/update/{id}",         [BlogsController::class, 'update'])->name('blog.update');
+        Route::post("/delete/{id}",         [BlogsController::class, 'delete'])->name('blog.delete');
     });
 
     Route::prefix('admin/users')->group(function () {

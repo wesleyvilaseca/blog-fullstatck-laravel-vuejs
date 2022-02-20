@@ -27,8 +27,14 @@
         "@inertiajs/inertia": "^0.11.0",
         "@inertiajs/inertia-vue": "^0.8.0",
         "@inertiajs/progress": "^0.2.7",
-        "view-design": "^4.7.0",
         "@vueup/vue-quill": "^1.0.0-beta.7",
+        "quill-drag-and-drop-module": "0.3.0",
+        "quill-image-drop-module": "1.0.3",
+        "quill-image-resize-module": "3.0.0",
+        "quill-yang-image-paste": "1.0.3",
+        "view-design": "^4.7.0",
+        "vue-editor-js": "^1.1.1",
+        "vue-quill-editor": "^3.0.6",
         "vue-router": "^3.5.3",
         "vuex": "^3.6.2"
     }
