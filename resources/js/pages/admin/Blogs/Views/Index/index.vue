@@ -42,12 +42,12 @@
                   </td>
                   <!-- <td>Economy</td> -->
                   <td>
-                    <button
+                    <Link
                       class="btn btn-sm btn-info"
-                      @click.prevent="edit(item)"
+                      href="/admin/"
                     >
                       Edit
-                    </button>
+                    </Link>
                     <button
                       class="btn btn-sm btn-danger"
                       @click.prevent="delet(item)"
