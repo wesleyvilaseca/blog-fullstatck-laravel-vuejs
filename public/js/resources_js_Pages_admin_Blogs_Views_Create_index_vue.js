@@ -27,12 +27,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_admin_adminLayout_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/layouts/admin/adminLayout.vue */ "./resources/js/layouts/admin/adminLayout.vue");
 /* harmony import */ var _components_Inputs_Common_InputComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/Inputs/Common/InputComponent.vue */ "./resources/js/components/Inputs/Common/InputComponent.vue");
 /* harmony import */ var _Styles_style_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Styles/style.css */ "./resources/js/Pages/admin/Blogs/Styles/style.css");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
 //
 //
 //
@@ -163,10 +174,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     tags: Array,
     error: String,
     warning: String,
-    success: String
+    success: String,
+    blog_: Object,
+    tags_: Array,
+    categories_: Array
   },
   data: function data() {
-    return {
+    return _defineProperty({
       config: {
         image: {},
         field: "image",
@@ -180,20 +194,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         metaDescription: "",
         category_id: [],
         tag_id: [],
-        jsonData: null
+        jsonData: null,
+        id: ""
       },
       articleHTML: "",
       category: [],
       tag: [],
       isCreating: false
-    };
+    }, "initData", null);
   },
   methods: {
     onSave: function onSave(response) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var data;
+        var data, route;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -258,20 +273,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", _this.e("Category is required"));
 
               case 19:
-                _this.$inertia.post("/admin/blogs/store-blogpost", _this.blog, {
+                route = _this.blog.id ? "/admin/blogs/".concat(_this.blog.id, "/update") : "/admin/blogs/store-blogpost";
+
+                _this.$inertia.post(route, _this.blog, {
                   onSuccess: function onSuccess() {
                     _this.isAdding = false;
                     if (_this.warning) return _this.w(_this.warning);
                     if (_this.error) return _this.e(_this.error);
                     return _this.s(_this.success);
                   }
-                }); // const res = this.callApi("post", "/admin/post/store-blogpost", this.blog);
-                // if (res.status !== 200) {
-                //   return this.e(res.data.msg);
-                // }
+                });
 
-
-              case 20:
+              case 21:
               case "end":
                 return _context.stop();
             }
@@ -358,7 +371,44 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   mounted: function mounted() {},
-  created: function created() {}
+  created: function created() {
+    if (this.blog_) {
+      this.blog.title = this.blog_.title;
+      this.blog.post_excerpt = this.blog_.post_excerpt;
+      this.blog.metaDescription = this.blog_.metaDescription;
+      this.blog.jsonData = this.blog_.jsonData;
+      this.blog.id = this.blog_.id;
+      this.initData = JSON.parse(this.blog_.jsonData);
+
+      var _iterator = _createForOfIteratorHelper(this.tags_),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var t = _step.value;
+          this.blog.tag_id.push(t.tag_id);
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      var _iterator2 = _createForOfIteratorHelper(this.categories_),
+          _step2;
+
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var c = _step2.value;
+          this.blog.category_id.push(c.category_id);
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -1681,22 +1731,42 @@ var render = function () {
                         ]),
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6 text-right" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-sm btn-success",
-                            on: {
-                              click: function ($event) {
-                                $event.stopPropagation()
-                                $event.preventDefault()
-                                return _vm.save()
+                      _c(
+                        "div",
+                        { staticClass: "col-md-6 text-right" },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-sm btn-success",
+                              on: {
+                                click: function ($event) {
+                                  $event.stopPropagation()
+                                  $event.preventDefault()
+                                  return _vm.save()
+                                },
                               },
                             },
-                          },
-                          [_vm._v("\n                Save\n              ")]
-                        ),
-                      ]),
+                            [
+                              _vm._v(
+                                "\n               " +
+                                  _vm._s(_vm.blog.id ? "Edit" : "Save") +
+                                  "\n              "
+                              ),
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "Link",
+                            {
+                              staticClass: "btn btn-sm btn-darkx",
+                              attrs: { href: "/admin/blogs" },
+                            },
+                            [_vm._v("\n                Voltar\n              ")]
+                          ),
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c(
                         "div",

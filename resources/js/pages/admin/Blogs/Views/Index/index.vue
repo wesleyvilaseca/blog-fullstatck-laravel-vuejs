@@ -44,7 +44,7 @@
                   <td>
                     <Link
                       class="btn btn-sm btn-info"
-                      href="/admin/"
+                      :href="`/admin/blogs/${item.id}/edit`"
                     >
                       Edit
                     </Link>
@@ -87,6 +87,20 @@ export default {
     };
   },
   methods: {
+    delet(obj) {
+      if (confirm("Are you sure you want too delete the post " + obj.title)) {
+        this.$inertia.post(
+          `/admin/blogs/${obj.id}/delete`,
+          {
+            onSuccess: () => {
+              if (this.warning) return this.w(this.warning);
+              if (this.error) return this.e(this.error);
+              return this.s(this.success);
+            },
+          }
+        );
+      }
+    },
   },
   mounted() {
 

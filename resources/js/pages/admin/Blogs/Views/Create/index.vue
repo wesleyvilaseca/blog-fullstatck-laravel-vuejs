@@ -22,8 +22,11 @@
                   class="btn btn-sm btn-success"
                   @click.stop.prevent="save()"
                 >
-                  Save
+                 {{ blog.id ? 'Edit' : 'Save'}}
                 </button>
+                <Link class="btn btn-sm btn-darkx" href="/admin/blogs">
+                  Voltar
+                </Link >
               </div>
 
               <div>
@@ -132,6 +135,10 @@ export default {
     error: String,
     warning: String,
     success: String,
+
+    blog_: Object,
+    tags_: Array,
+    categories_: Array,
   },
   data() {
     return {
@@ -149,11 +156,13 @@ export default {
         category_id: [],
         tag_id: [],
         jsonData: null,
+        id: ""
       },
       articleHTML: "",
       category: [],
       tag: [],
       isCreating: false,
+      initData: null,
     };
   },
   methods: {
@@ -172,8 +181,10 @@ export default {
       if (!this.blog.tag_id.length) return this.e("Tag is required");
       if (!this.blog.category_id.length) return this.e("Category is required");
 
-      this.$inertia.post("/admin/blogs/store-blogpost", this.blog, {
-         onSuccess: () => {
+      let route = this.blog.id ? `/admin/blogs/${this.blog.id}/update` : "/admin/blogs/store-blogpost";
+
+      this.$inertia.post(route, this.blog, {
+        onSuccess: () => {
           this.isAdding = false;
           if (this.warning) return this.w(this.warning);
 
@@ -181,12 +192,7 @@ export default {
 
           return this.s(this.success);
         },
-      })
-
-      // const res = this.callApi("post", "/admin/post/store-blogpost", this.blog);
-      // if (res.status !== 200) {
-      //   return this.e(res.data.msg);
-      // }
+      });
     },
     async save() {
       const res = await this.$refs.editor.save();
@@ -241,6 +247,24 @@ export default {
     },
   },
   mounted() {},
-  created() {},
+  created() {
+    if (this.blog_) {
+      this.blog.title = this.blog_.title;
+      this.blog.post_excerpt = this.blog_.post_excerpt;
+      this.blog.metaDescription = this.blog_.metaDescription;
+      this.blog.jsonData = this.blog_.jsonData;
+      this.blog.id = this.blog_.id;
+
+      this.initData = JSON.parse(this.blog_.jsonData);
+
+      for (let t of this.tags_) {
+        this.blog.tag_id.push(t.tag_id);
+      }
+
+      for (let c of this.categories_) {
+        this.blog.category_id.push(c.category_id);
+      }
+    }
+  },
 };
 </script>

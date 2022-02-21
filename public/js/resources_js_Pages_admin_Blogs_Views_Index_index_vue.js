@@ -97,7 +97,21 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {};
   },
-  methods: {},
+  methods: {
+    delet: function delet(obj) {
+      var _this = this;
+
+      if (confirm("Are you sure you want too delete the post " + obj.title)) {
+        this.$inertia.post("/admin/blogs/".concat(obj.id, "/delete"), {
+          onSuccess: function onSuccess() {
+            if (_this.warning) return _this.w(_this.warning);
+            if (_this.error) return _this.e(_this.error);
+            return _this.s(_this.success);
+          }
+        });
+      }
+    }
+  },
   mounted: function mounted() {},
   created: function created() {}
 });
@@ -516,43 +530,47 @@ var render = function () {
                                     ),
                                   ]),
                                   _vm._v(" "),
-                                  _c("td", [
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-sm btn-info",
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.edit(item)
+                                  _c(
+                                    "td",
+                                    [
+                                      _c(
+                                        "Link",
+                                        {
+                                          staticClass: "btn btn-sm btn-info",
+                                          attrs: {
+                                            href:
+                                              "/admin/blogs/" +
+                                              item.id +
+                                              "/edit",
                                           },
                                         },
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                    Edit\n                  "
-                                        ),
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-sm btn-danger",
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.delet(item)
+                                        [
+                                          _vm._v(
+                                            "\n                    Edit\n                  "
+                                          ),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn btn-sm btn-danger",
+                                          on: {
+                                            click: function ($event) {
+                                              $event.preventDefault()
+                                              return _vm.delet(item)
+                                            },
                                           },
                                         },
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                    Delete\n                  "
-                                        ),
-                                      ]
-                                    ),
-                                  ]),
+                                        [
+                                          _vm._v(
+                                            "\n                    Delete\n                  "
+                                          ),
+                                        ]
+                                      ),
+                                    ],
+                                    1
+                                  ),
                                 ])
                               }),
                             ],

@@ -51,10 +51,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get("/create",               [BlogsController::class, 'create'])->name('blog.create');
         Route::post('/create',              [BlogsController::class, 'imageUpload']);
         Route::post("/store-blogpost",      [BlogsController::class, 'store'])->name('blog.store');
-        
-        Route::get("/edit/{id}",            [BlogsController::class, 'edit'])->name('blog.edit');
-        Route::post("/update/{id}",         [BlogsController::class, 'update'])->name('blog.update');
-        Route::post("/delete/{id}",         [BlogsController::class, 'delete'])->name('blog.delete');
+
+        Route::get("/{id}/edit",            [BlogsController::class, 'edit'])->name('blog.edit');
+        Route::post("/{id}/update",         [BlogsController::class, 'update'])->name('blog.update');
+        Route::post("/{id}/delete",         [BlogsController::class, 'delete'])->name('blog.delete');
     });
 
     Route::prefix('admin/users')->group(function () {

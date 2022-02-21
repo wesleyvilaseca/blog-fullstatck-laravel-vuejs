@@ -23,6 +23,7 @@ class CreateBlogsTable extends Migration
             $table->string('featuredImage')->nullable();
             $table->string('metaDescription');
             $table->text('jsonData');
+            $table->integer('active')->default(0);
             $table->integer('views')->default(0);
 
             $table->timestamps();
