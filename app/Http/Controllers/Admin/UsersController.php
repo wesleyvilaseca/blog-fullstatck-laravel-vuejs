@@ -47,12 +47,20 @@ class UsersController extends Controller
             return Redirect::route('user.create')->with('warning', 'There is already a user with this email');
         }
 
-        $result = User::create([
+        $data  = [
             'name'      => $request->name,
             'email'     => $request->email,
             'userType'  => $request->userType,
-            'password'  => Hash::make($request->password)
-        ]);
+            'password'  => Hash::make($request->password),
+        ];
+
+        if ($request->file()) {
+            $picName = time() . '.' . $request->profilePic->extension();
+            $request->profilePic->move(public_path('uploads/profilepics'), $picName);
+            $data['profilePic'] = $picName;
+        }
+
+        $result = User::create($data);
 
         if (!$result) {
             return Redirect::route('user.create')->with('warning', 'Error on operation, please try again!');
@@ -105,6 +113,19 @@ class UsersController extends Controller
 
         if (@isset($request->password)) {
             $data['password'] = Hash::make($request->password);
+        }
+        
+        if ($request->file()) {
+            if($user->profilePic){
+                $file_patch = public_path() . '/uploads/profilepics/' . $user->profilePic;
+                if (file_exists($file_patch)) {
+                    @unlink($file_patch);
+                }
+            }
+
+            $picName = time() . '.' . $request->profilePic->extension();
+            $request->profilePic->move(public_path('uploads/profilepics'), $picName);
+            $data['profilePic'] = $picName;
         }
 
         $result = User::where('id', $user->id)->update($data);

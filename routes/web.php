@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Common\BlogController;
+use App\Http\Controllers\Common\HomeController as CommonHomeController;
 use Inertia\Inertia;
 
 /*
@@ -89,9 +91,19 @@ Route::get('/login',    [LoginController::class, 'index'])->name("login");
 Route::post('/login',   [LoginController::class, 'login'])->name("admin.login");
 Route::get('/logout',   [LoginController::class, 'logout'])->name("admin.logout");
 
-Route::get('/', function () {
-    return Inertia::render('blog/Home', ['title' => 'inertia teste']);
-});
+
+/**
+ * blogroutes
+ */
+
+Route::get('/',                         [CommonHomeController::class, 'index'])->name("home");
+Route::get('/about',                    [CommonHomeController::class, 'about'])->name("about");
+Route::get('/contact',                  [CommonHomeController::class, 'contact'])->name("contact");
+
+Route::get('/blog',                     [BlogController::class, 'index'])->name("blog");
+Route::get('/moreposts',                [BlogController::class, 'moreposts'])->name("moreposts");
+Route::get('/post/{slug}',              [BlogController::class, 'post'])->name("post");
+
 
 // Route::get('/{any}', function () {
 //     return view('welcome');

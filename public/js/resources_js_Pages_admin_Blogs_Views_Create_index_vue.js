@@ -118,48 +118,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -195,6 +153,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         category_id: [],
         tag_id: [],
         jsonData: null,
+        featuredImage: "",
         id: ""
       },
       articleHTML: "",
@@ -315,6 +274,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee2);
       }))();
     },
+    change: function change(e) {
+      if (e.target.files[0]["type"].split('/')[0] !== "image") {
+        document.getElementById("formFile").value = "";
+        return this.w('Only file image type is permited!');
+      }
+
+      var filesize = e.target.files[0].size;
+      var filesizeMB = (filesize / (1024 * 1024)).toFixed(2);
+
+      if (filesizeMB > 5) {
+        document.getElementById("formFile").value = "";
+        return this.w('Max file size permited is 5mb');
+      }
+
+      this.blog.featuredImage = e.target.files[0];
+    },
     outputHtml: function outputHtml(articleObj) {
       var _this3 = this;
 
@@ -333,7 +308,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             break;
 
           case "raw":
-            _this3.articleHTML += "<div class=\"ce-block\">\n\t\t\t\t\t<div class=\"ce-block__content\">\n\t\t\t\t\t<div class=\"ce-code\">\n\t\t\t\t\t\t<code>".concat(obj.data.html, "</code>\n\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n");
+            _this3.articleHTML += "<div class=\"ce-block\">\n\n<div class=\"ce-block__content\">\n\n<div class=\"ce-code\">\n\n<code>".concat(obj.data.html, "</code>\n\n</div>\n\n</div>\n\n</div>\n");
             break;
 
           case "code":
@@ -1720,7 +1695,7 @@ var render = function () {
                 "div",
                 {
                   staticClass:
-                    "\n          _1adminOverveiw_table_recent\n          _box_shadow\n          _border_radious\n          _mar_b30\n          _p20\n        ",
+                    "\r\n            _1adminOverveiw_table_recent\r\n            _box_shadow\r\n            _border_radious\r\n            _mar_b30\r\n            _p20\r\n          ",
                 },
                 [
                   _c("form", { attrs: { action: "" } }, [
@@ -1749,9 +1724,9 @@ var render = function () {
                             },
                             [
                               _vm._v(
-                                "\n               " +
+                                "\r\n                                " +
                                   _vm._s(_vm.blog.id ? "Edit" : "Save") +
-                                  "\n              "
+                                  "\r\n                            "
                               ),
                             ]
                           ),
@@ -1762,7 +1737,11 @@ var render = function () {
                               staticClass: "btn btn-sm btn-darkx",
                               attrs: { href: "/admin/blogs" },
                             },
-                            [_vm._v("\n                Voltar\n              ")]
+                            [
+                              _vm._v(
+                                "\r\n                            Voltar\r\n                            "
+                              ),
+                            ]
                           ),
                         ],
                         1
@@ -1771,6 +1750,45 @@ var render = function () {
                       _c(
                         "div",
                         [
+                          _vm.blog.id && _vm.blog_.featuredImage
+                            ? _c(
+                                "div",
+                                {
+                                  staticStyle: { "margin-top": "40px" },
+                                  attrs: { align: "center" },
+                                },
+                                [
+                                  _c("img", {
+                                    staticStyle: { "max-width": "100px" },
+                                    attrs: {
+                                      src:
+                                        "/uploads/blogfeaturedimage/" +
+                                        _vm.blog_.featuredImage,
+                                    },
+                                  }),
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "form-label",
+                                  attrs: { for: "formFile" },
+                                },
+                                [_vm._v("Featured Image")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "form-control",
+                                attrs: { type: "file", id: "formFile" },
+                                on: { change: _vm.change },
+                              }),
+                            ]),
+                          ]),
+                          _vm._v(" "),
                           _c("InputComponent", {
                             attrs: {
                               extraclass: "mt-2",
@@ -1938,7 +1956,9 @@ var render = function () {
                       ),
                       _vm._v(" "),
                       _c("div", [
-                        _vm._v("\n              Blog\n              "),
+                        _vm._v(
+                          "\r\n                            Blog\r\n                            "
+                        ),
                         _c(
                           "div",
                           { staticClass: "blog_editor" },

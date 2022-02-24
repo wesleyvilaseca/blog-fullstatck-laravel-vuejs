@@ -50,19 +50,27 @@ class BlogsController extends Controller
             return response()->json($validate->errors(), 203);
         }
 
+        $data = [
+            'title'             => $request->title,
+            'slug'              => Blog::uniqueSlug($request->title, '-'),
+            'post'              => $request->post,
+            'post_excerpt'      => $request->post_excerpt,
+            'user_id'           => Auth::user()->id,
+            'metaDescription'   => $request->metaDescription,
+            'jsonData'          => $request->jsonData,
+        ];
+
+        if ($request->file()) {
+            $picName = time() . '.' . $request->featuredImage->extension();
+            $request->featuredImage->move(public_path('uploads/blogfeaturedimage'), $picName);
+            $data['featuredImage'] = $picName;
+        }
+
         $blogTags       = [];
         $blogCategories = [];
 
         try {
-            $blog = Blog::create([
-                'title'             => $request->title,
-                'slug'              => Blog::uniqueSlug($request->title, '-'),
-                'post'              => $request->post,
-                'post_excerpt'      => $request->post_excerpt,
-                'user_id'           => Auth::user()->id,
-                'metaDescription'   => $request->metaDescription,
-                'jsonData'          => $request->jsonData,
-            ]);
+            $blog = Blog::create($data);
 
             // insert blog categories
             foreach ($request->category_id as $category) {
@@ -127,20 +135,35 @@ class BlogsController extends Controller
             return response()->json($validate->errors(), 203);
         }
 
+        $data = [
+            'title'             => $request->title,
+            'slug'              => $request->title !== $exist->title ? Blog::uniqueSlug($request->title, '-') : $request->title,
+            'post'              => $request->post,
+            'post_excerpt'      => $request->post_excerpt,
+            'user_id'           => Auth::user()->id,
+            'metaDescription'   => $request->metaDescription,
+            'jsonData'          => $request->jsonData,
+        ];
+
+        if ($request->file()) {
+            if($exist->featuredImage){
+                $file_patch = public_path() . '/uploads/blogfeaturedimage/' . $exist->featuredImage;
+                if (file_exists($file_patch)) {
+                    @unlink($file_patch);
+                }
+            }
+
+            $picName = time() . '.' . $request->featuredImage->extension();
+            $request->featuredImage->move(public_path('uploads/blogfeaturedimage'), $picName);
+            $data['featuredImage'] = $picName;
+        }
+
         $blogTags       = [];
         $blogCategories = [];
 
         DB::beginTransaction();
         try {
-            $blog = Blog::where('id', $request->id)->update([
-                'title'             => $request->title,
-                'slug'              => $request->title !== $exist->title ? Blog::uniqueSlug($request->title, '-') : $request->title,
-                'post'              => $request->post,
-                'post_excerpt'      => $request->post_excerpt,
-                'user_id'           => Auth::user()->id,
-                'metaDescription'   => $request->metaDescription,
-                'jsonData'          => $request->jsonData,
-            ]);
+            Blog::where('id', $request->id)->update($data);
 
             // insert blog categories
             foreach ($request->category_id as $category) {
