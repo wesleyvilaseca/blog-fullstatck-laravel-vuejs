@@ -68,19 +68,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -111,6 +98,7 @@ __webpack_require__.r(__webpack_exports__);
         email: "",
         password: "",
         userType: "",
+        profilePic: "",
         id: ""
       })
     };
@@ -130,6 +118,22 @@ __webpack_require__.r(__webpack_exports__);
           if (_this.error) return _this.e(_this.error);
         }
       });
+    },
+    change: function change(e) {
+      if (e.target.files[0]["type"].split('/')[0] !== "image") {
+        document.getElementById("formFile").value = "";
+        return this.w('Only file image type is permited!');
+      }
+
+      var filesize = e.target.files[0].size;
+      var filesizeMB = (filesize / (1024 * 1024)).toFixed(2);
+
+      if (filesizeMB > 5) {
+        document.getElementById("formFile").value = "";
+        return this.w('Max file size permited is 5mb');
+      }
+
+      this.data.profilePic = e.target.files[0];
     }
   },
   mounted: function mounted() {},
@@ -139,6 +143,7 @@ __webpack_require__.r(__webpack_exports__);
       this.data.email = this.user.email;
       this.data.userType = this.user.userType;
       this.data.id = this.user.id;
+      this.data.profilePic = this.user.profilePic;
     }
   }
 });
@@ -758,7 +763,7 @@ var render = function () {
                       },
                       [
                         _vm._v(
-                          "\n            " +
+                          "\r\n                        " +
                             _vm._s(_vm.user ? "Editar" : "Salvar") +
                             " "
                         ),
@@ -766,6 +771,37 @@ var render = function () {
                       ]
                     ),
                   ]),
+                  _vm._v(" "),
+                  _vm.data.id && _vm.user.profilePic
+                    ? _c(
+                        "div",
+                        {
+                          staticStyle: { "margin-top": "40px" },
+                          attrs: { align: "center" },
+                        },
+                        [
+                          _c("img", {
+                            staticStyle: { "max-width": "100px" },
+                            attrs: {
+                              src:
+                                "/uploads/profilepics/" + _vm.user.profilePic,
+                            },
+                          }),
+                        ]
+                      )
+                    : _c(
+                        "div",
+                        {
+                          staticStyle: { "margin-top": "40px" },
+                          attrs: { align: "center" },
+                        },
+                        [
+                          _c("img", {
+                            staticStyle: { "max-width": "100px" },
+                            attrs: { src: "/uploads/profilepics/no-photo.png" },
+                          }),
+                        ]
+                      ),
                   _vm._v(" "),
                   _c("div", { staticClass: "row" }, [
                     _c(
@@ -863,6 +899,25 @@ var render = function () {
                       ],
                       1
                     ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "formFile" },
+                          },
+                          [_vm._v("ProfilePic")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: { type: "file", id: "formFile" },
+                          on: { change: _vm.change },
+                        }),
+                      ]),
+                    ]),
                   ]),
                 ]
               ),
