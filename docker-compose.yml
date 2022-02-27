@@ -5,6 +5,9 @@ services:
     app:
         container_name: blog-spa-laravel
         build:
+            args:
+                user: wesley
+                uid: 1000
             context: .
             dockerfile: Dockerfile
         image: blog-spa/laravel-app
