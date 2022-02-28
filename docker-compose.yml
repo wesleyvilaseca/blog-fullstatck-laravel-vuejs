@@ -3,14 +3,14 @@ version: "3.7"
 services:
     # image project
     app:
-        container_name: blog-spa-laravel
+        container_name: blog-laravel
         build:
             args:
                 user: wesley
                 uid: 1000
             context: .
             dockerfile: Dockerfile
-        image: blog-spa/laravel-app
+        image: wesley/laravel-blog
         restart: unless-stopped
         working_dir: /var/www/
         volumes:
@@ -22,7 +22,7 @@ services:
     
     # nginx
     nginx:
-        container_name: blog-spa-nginx
+        container_name: blog-nginx
         image: nginx:alpine
         restart: unless-stopped
         ports: 
@@ -35,7 +35,7 @@ services:
 
     # db mysql
     mysql:
-        container_name: blog-spa-mysql
+        container_name: blog-mysql
         image: mysql:5.7.22
         restart: unless-stopped
         environment: 
@@ -52,8 +52,8 @@ services:
 
     # queue
     queue:
-        container_name: blog-sap-queue
-        image: blog-spa/laravel-app
+        container_name: blog-queue
+        image: wesley/laravel-blog
         restart: unless-stopped
         command: "php artisan queue:work"
         volumes: 
@@ -66,7 +66,7 @@ services:
 
     # redis
     redis:
-        container_name: blog-spa-redis
+        container_name: laravel-redis
         image: redis:latest
         networks: 
             - laravel
