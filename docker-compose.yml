@@ -10,7 +10,7 @@ services:
                 uid: 1000
             context: .
             dockerfile: Dockerfile
-        image: wesley/laravel-blog
+        image: wesleyvilaseca/laravel-blog
         restart: unless-stopped
         working_dir: /var/www/
         volumes:
