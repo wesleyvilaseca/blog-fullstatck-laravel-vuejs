@@ -53,7 +53,7 @@ services:
     # queue
     queue:
         container_name: blog-queue
-        image: wesley/laravel-blog
+        image: wesleyvilaseca/laravel-blog
         restart: unless-stopped
         command: "php artisan queue:work"
         volumes: 
